@@ -37,4 +37,6 @@ local plugin = require(plugin)
 require("user.colors")
 require("user.status-tab-line")
 require("user.completion")
-
+require("user.rainbow-delim")
+require("user.file-manager")
+require("user.vimtex")

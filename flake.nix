@@ -138,6 +138,10 @@
           vim-surround
           auto-pairs
           rainbow-delimiters-nvim
+
+          oil-nvim
+          which-key-nvim
+          vimtex
         ];
       };
 
