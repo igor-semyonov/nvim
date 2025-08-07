@@ -200,11 +200,12 @@ require("oil").setup({
     },
 })
 
--- vim.keymap.set(table.unpack(
---     {
---         "-",
---         "<cmd>Oil<cr>",
---         desc = "Toggle Oil",
---         mode = { "n" },
---     }
--- ))
+vim.keymap.set(
+    "n",
+    "-",
+    "<cmd>Oil<cr>",
+    {
+        desc = "Toggle Oil",
+    }
+
+)
