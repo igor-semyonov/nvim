@@ -6,5 +6,7 @@ return {
 			require("user.colors")
 		end,
 	},
-	"norcalli/nvim-colorizer.lua",
+    {
+        "norcalli/nvim-colorizer.lua",
+    }
 }

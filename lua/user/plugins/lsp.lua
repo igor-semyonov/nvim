@@ -10,7 +10,9 @@ return {
             require("user.lsp")
         end,
     },
-    "RRethy/vim-illuminate",
+    {
+        "RRethy/vim-illuminate",
+    }
     {
         "ray-x/lsp_signature.nvim",
         -- event = "VeryLazy",
@@ -135,5 +137,5 @@ return {
             vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
         end,
     },
-    { "folke/neodev.nvim", opts = {} },
+    { "folke/lazydev.nvim", opts = {} },
 }

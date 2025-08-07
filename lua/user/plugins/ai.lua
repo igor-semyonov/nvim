@@ -4,7 +4,7 @@ local gen_mapping_prefix = "<leader>e"
 return {
 	{
 		"nomnivore/ollama.nvim",
-        -- enabled = false,
+        enabled = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},

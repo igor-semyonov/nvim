@@ -116,7 +116,29 @@
       # This is for plugins that will load at startup without using packadd:
       startupPlugins = {
         gitPlugins = with pkgs.neovimPlugins; [];
-        general = with pkgs.vimPlugins; [];
+        general = with pkgs.vimPlugins; [
+          nightfox-nvim
+          nvim-colorizer-lua
+          lualine-nvim
+          nvim-web-devicons
+
+          # cmp
+          nvim-cmp
+          lspkind-nvim
+          cmp-nvim-lsp
+          cmp-nvim-lsp-signature-help
+          cmp-path
+          cmp-buffer
+          luasnip
+          cmp_luasnip
+          friendly-snippets
+          cmp-nvim-lua
+
+          # delimiters
+          vim-surround
+          auto-pairs
+          rainbow-delimiters-nvim
+        ];
       };
 
       # not loaded automatically at startup.
@@ -190,7 +212,8 @@
           suffix-path = true;
           suffix-LD = true;
           wrapRc = true;
-          configDirName = "nvim-nixcats";
+          # configDirName = "nvim-nixcats";
+          configDirName = "nvim";
           # IMPORTANT:
           # your alias may not conflict with your other packages.
           aliases = ["vim"];
