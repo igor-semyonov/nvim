@@ -3,12 +3,8 @@ if not status_ok then
   return
 end
 
-require("neodev").setup({
-  -- library = {
-  --       plugins = { "nvim-dap-ui" }, 
-  --       types = true 
-  --   },
-})
-
-require "user.lsp.mason"
+require "user.lsp.servers"
 require("user.lsp.handlers").setup()
+require("user.lsp.signature")
+require("user.lsp.formatter")
+require("lazydev")

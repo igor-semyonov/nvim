@@ -9,10 +9,7 @@ local servers = {
 
     -- "pyright",
     "pylsp",
-    "pyre",
     "ruff",
-    -- "ruff_lsp",
-    -- "pylyzer",
 
     "bashls",
     -- "yamlls",
@@ -21,16 +18,11 @@ local servers = {
     "docker_compose_language_service",
     "html",
     -- "ltex",
+    "ltex_plus",
     "texlab",
     "matlab_ls",
     "julials",
     -- "hdl_checker",
-}
-
-local servers_no_auto_install = {
-    -- "hls", -- haskell-language-server
-    -- "nil_ls",
-    -- "vhdl_ls",
 }
 
 local settings = {
@@ -47,11 +39,11 @@ local settings = {
 }
 
 require("mason").setup(settings)
-require("mason-lspconfig").setup({
-    ensure_installed = servers,
-    -- automatic_installation = true,
-    automatic_installation = { exclude = servers_no_auto_install },
-})
+-- require("mason-lspconfig").setup({
+--     ensure_installed = servers,
+--     -- automatic_installation = true,
+--     automatic_installation = { exclude = servers_no_auto_install },
+-- })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then

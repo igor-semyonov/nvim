@@ -110,6 +110,37 @@
           fzf
           rust-analyzer
           # luajitPackages.luafilesystem
+
+          # lsp
+          cmake
+          rust-analyzer
+          hyprls
+          clang-tools
+          lua-language-server
+          ast-grep
+          nil
+          pyright
+          python313Packages.python-lsp-server
+          ruff
+          bash-language-server
+          yaml-language-server
+          jsonnet-language-server
+          awk-language-server
+          docker-compose-language-service
+          ltex-ls
+          ltex-ls-plus
+          texlab
+          matlab-language-server
+
+          # formatters
+          stylua
+          yamlfmt
+          isort
+          black
+          rustfmt
+          taplo
+          texlivePackages.latexindent
+          alejandra
         ];
       };
 
@@ -153,6 +184,12 @@
           telescope-fzf-native-nvim
           telescope-smart-history-nvim
           nvim-treesitter.withAllGrammars
+          vim-illuminate
+          lsp_signature-nvim
+          conform-nvim
+          lazydev-nvim
+          nvim-lspconfig
+          mason-nvim
         ];
       };
 
