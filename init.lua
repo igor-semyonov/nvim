@@ -49,3 +49,5 @@ vim.g.NERDDefaultAlign = "left"
 
 require("user.git")
 require("user.telescope")
+
+require("user.which-key")
