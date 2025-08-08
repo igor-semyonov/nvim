@@ -142,6 +142,13 @@
           oil-nvim
           which-key-nvim
           vimtex
+          nvim-ufo
+          promise-async
+          nerdcommenter
+          gitsigns-nvim
+          plenary-nvim
+          diffview-nvim
+          neogit
         ];
       };
 

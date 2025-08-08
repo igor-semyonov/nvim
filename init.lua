@@ -41,3 +41,10 @@ require("user.rainbow-delim")
 require("user.file-manager")
 require("user.vimtex")
 require("user.ufo")
+
+vim.g.NERDCreateDefaultMappings = 1
+vim.g.NERDSpaceDelims = 1
+vim.g.NERDCompactSexyComs = 1
+vim.g.NERDDefaultAlign = "left"
+
+require("user.git")
