@@ -48,3 +48,4 @@ vim.g.NERDCompactSexyComs = 1
 vim.g.NERDDefaultAlign = "left"
 
 require("user.git")
+require("user.telescope")

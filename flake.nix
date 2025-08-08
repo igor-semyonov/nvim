@@ -149,6 +149,9 @@
           plenary-nvim
           diffview-nvim
           neogit
+          telescope-nvim
+          telescope-fzf-native-nvim
+          telescope-smart-history-nvim
         ];
       };
 
