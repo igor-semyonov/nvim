@@ -446,3 +446,10 @@ neogit.setup {
         },
     },
 }
+
+vim.keymap.set(
+    "n",
+    "<leader>n",
+    "<cmd>Neogit<cr>",
+    {desc="Open Neogit"}
+)
