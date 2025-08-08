@@ -190,6 +190,8 @@
           lazydev-nvim
           nvim-lspconfig
           mason-nvim
+          vim-tmux-navigator
+          otter-nvim
         ];
       };
 

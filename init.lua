@@ -50,6 +50,32 @@ vim.g.NERDDefaultAlign = "left"
 require("user.git")
 require("user.telescope")
 
-require("user.lsp.init")
+local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+ts_update()
+require("nvim-treesitter.configs").setup({
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
+    indent = { enable = true },
+    -- rainbow = {
+    --     enable = true,
+    --     extended_mode = true,
+    --     max_file_lines = nil,
+    -- }
+})
+
+require("user.lsp")
+
+local keys = {
+    { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>",     "Tmux Move Left" },
+    { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>",     "Tmux Move Down" },
+    { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>",       "Tmux Move Up" },
+    { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>",    "Tmux Move Right" },
+    { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>", "Tmux Move Previous" },
+}
+for _, k in ipairs(keys) do
+    vim.keymap.set("n", k[1], k[2], { desc = k[3] })
+end
 
 require("user.which-key")
