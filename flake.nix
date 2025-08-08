@@ -152,6 +152,7 @@
           telescope-nvim
           telescope-fzf-native-nvim
           telescope-smart-history-nvim
+          nvim-treesitter.withAllGrammars
         ];
       };
 
