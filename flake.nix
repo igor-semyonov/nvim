@@ -119,6 +119,7 @@
           lua-language-server
           ast-grep
           nil
+          nixd
           pyright
           python313Packages.python-lsp-server
           ruff
