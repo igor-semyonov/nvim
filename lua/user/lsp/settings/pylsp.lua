@@ -1,5 +1,5 @@
 local opts = {
-      cmd = {"/usr/bin/pylsp"},
+      -- cmd = {"/usr/bin/pylsp"},
 }
 
 return opts
