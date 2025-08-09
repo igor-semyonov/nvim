@@ -5,7 +5,7 @@ local servers = {
     "clangd",
     "lua_ls",
     "ast_grep",
-    -- "nil_ls",
+    "nil_ls",
 
     -- "pyright",
     "pylsp",
