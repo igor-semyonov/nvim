@@ -125,7 +125,7 @@
           ruff
           bash-language-server
           yaml-language-server
-          jsonnet-language-server
+          vscode-json-languageserver
           awk-language-server
           docker-compose-language-service
           ltex-ls
