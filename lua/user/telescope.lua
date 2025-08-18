@@ -133,7 +133,7 @@ telescope.setup({
 local builtin = require("telescope.builtin")
 local opts = { noremap = true, silent = true }
 local key_prefix = "<leader>r"
-vim.keymap.set("n", key_prefix .. "f", builtin.find_files, opts)
+vim.keymap.set("n", key_prefix .. "ff", builtin.find_files, opts)
 vim.keymap.set("n", key_prefix .. "fg", builtin.git_files, opts)
 vim.keymap.set("n", key_prefix .. "g", builtin.live_grep, opts)
 vim.keymap.set("n", key_prefix .. "sg", builtin.grep_string, opts)
