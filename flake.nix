@@ -140,7 +140,7 @@
           black
           rustfmt
           taplo
-          texlivePackages.latexindent
+          texliveFull
           alejandra
         ];
       };
