@@ -132,6 +132,7 @@
           ltex-ls-plus
           texlab
           matlab-language-server
+          cmake-language-server
 
           # formatters
           stylua
