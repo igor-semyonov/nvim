@@ -1,7 +1,7 @@
 local opts = { noremap = true, silent = true }
 local opts_no_silent = { noremap = true, silent = false }
-local tts_cmd = ":.w ! ~/scripts/tts &<CR><CR>"
-local tts_cmd_v = "::w ! ~/scripts/tts &<CR><CR>gv"
+local tts_cmd = ":.w ! tts &<CR><CR>"
+local tts_cmd_v = "::w ! tts &<CR><CR>gv"
 
 local term_opts = { silent = true }
 
