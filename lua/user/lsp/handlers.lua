@@ -15,22 +15,24 @@ M.capabilities.textDocument.foldingRange = {
 }
 
 M.setup = function()
-	local signs = {
-
-		{ name = "DiagnosticSignError", text = "" },
-		{ name = "DiagnosticSignWarn", text = "" },
-		{ name = "DiagnosticSignHint", text = "" },
-		{ name = "DiagnosticSignInfo", text = "" },
-	}
-
-	for _, sign in ipairs(signs) do
-		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-	end
-
 	local config = {
 		virtual_text = false, -- disable virtual text
 		signs = {
-			active = signs, -- show signs
+			text = {
+				[vim.diagnostic.severity.ERROR] = "",
+				[vim.diagnostic.severity.WARN] = "",
+				[vim.diagnostic.severity.INFO] = "",
+				[vim.diagnostic.severity.HINT] = "",
+			},
+			numhl = {
+				[vim.diagnostic.severity.ERROR] = "NumError",
+				[vim.diagnostic.severity.WARN] = "NumWarn",
+				[vim.diagnostic.severity.INFO] = "NumInfo",
+				[vim.diagnostic.severity.HINT] = "NumHint",
+			},
+			linehl = {
+				[vim.diagnostic.severity.ERROR] = "LineError",
+			},
 		},
 		update_in_insert = true,
 		underline = true,
@@ -38,7 +40,7 @@ M.setup = function()
 		float = {
 			focusable = true,
 			style = "minimal",
-			border = "rounded",
+			border = "bold",
 			source = "always",
 			header = "",
 			prefix = "",
@@ -56,17 +58,17 @@ M.setup = function()
 	--     }
 	-- )
 
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-		border = "rounded",
-	})
+	-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	--     border = "rounded",
+	-- })
 
-	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-		border = "rounded",
-	})
+	-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+	--     border = "rounded",
+	-- })
 end
 
 local function lsp_keymaps(bufnr)
-	local opts = { noremap = true, silent = true }
+	local opts = { noremap = true, silent = true, buffer = bufnr }
 	local keymaps = {
 		{
 			mode = "n",
@@ -140,7 +142,7 @@ local function lsp_keymaps(bufnr)
 			mode = "n",
 			lhs = "<leader>lj",
 			rhs = function()
-				vim.diagnostic.goto_next()
+				vim.diagnostic.jump({ count = 1, float = true, wrap = true })
 			end,
 			opts = opts,
 		},
@@ -148,7 +150,7 @@ local function lsp_keymaps(bufnr)
 			mode = "n",
 			lhs = "<leader>lk",
 			rhs = function()
-				vim.diagnostic.goto_prev()
+				vim.diagnostic.jump({ count = -1, float = true, wrap = true })
 			end,
 			opts = opts,
 		},

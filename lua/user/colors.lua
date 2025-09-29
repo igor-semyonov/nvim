@@ -45,6 +45,13 @@ require("nightfox").setup({
             NormalFloat = { bg = "black" },
             FloatBorder = { bg = "black", fg = monk },
             illuminatedWordText = { fg = "#80FF80" , bg="#E06040"},
+
+            -- diagnostics
+            NumError = {bg="#FF80FF"},
+            LineError = {bg="#804080"},
+            NumWarn = {bg="#FFA500"},
+            NumInfo = {bg="#FFEA00"},
+            NumHint = {bg="#0020FF"},
         },
     },
 })
