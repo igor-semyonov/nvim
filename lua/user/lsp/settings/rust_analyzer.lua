@@ -1,5 +1,4 @@
 local opts = {
-	cmd = { vim.fn.expand("$HOME/.cargo/bin/rust-analyzer") },
 	settings = {
 		["rust-analyzer"] = {
 			-- Other Settings ...

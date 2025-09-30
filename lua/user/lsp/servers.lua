@@ -1,6 +1,6 @@
 local servers = {
 	"cmake",
-	-- "rust_analyzer",
+    -- "rust_analyzer", -- handled by rustaceanvim
 	"hyprls",
 	"clangd",
 	"lua_ls",
@@ -68,3 +68,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 	end,
 })
+
+local require_ok, rust_specific_opts = pcall(require, "user.lsp.settings.rust_analyzer")
+if require_ok then
+    rust_specific_opts = vim.tbl_deep_extend("keep", rust_specific_opts, opts)
+end
+vim.g.rustaceanvim = {
+    server = rust_specific_opts,
+}
+

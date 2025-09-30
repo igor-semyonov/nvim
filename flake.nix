@@ -194,6 +194,8 @@
           mason-nvim
           vim-tmux-navigator
           otter-nvim
+
+          rustaceanvim
         ];
       };
 
@@ -202,7 +204,7 @@
       optionalPlugins = {
         gitPlugins = with pkgs.neovimPlugins; [];
         general = with pkgs.vimPlugins; [];
-        rust = with pkgs.vimPlugins; [rustaceanvim];
+        rust = with pkgs.vimPlugins; [];
       };
 
       # shared libraries to be added to LD_LIBRARY_PATH
