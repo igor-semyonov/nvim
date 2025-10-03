@@ -94,7 +94,7 @@ local space = "☠"
 
 opt.listchars:append({
 	eol = "↲",
-	tab = "├─",
+	tab = "│ ",
 	leadmultispace = "│   ",
 	-- multispace = space,
 	trail = space,
