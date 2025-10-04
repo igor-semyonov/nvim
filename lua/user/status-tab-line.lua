@@ -113,7 +113,6 @@ local function toggle_statusline()
 			place = { "statusline" },
 		})
 		vim.opt.laststatus = 0
-        vim.opt.cmdheight = 0
 		vim.g.lualine_statusline_visible = false
 	else
 		lualine.hide({
@@ -121,7 +120,6 @@ local function toggle_statusline()
 			unhide = true,
 		})
 		vim.opt.laststatus = 3
-        vim.opt.cmdheight = 1
 		vim.g.lualine_statusline_visible = true
 	end
 end
@@ -141,8 +139,16 @@ local function toggle_tabline()
 		vim.g.lualine_tabline_visible = true
 	end
 end
+local function toggle_cmdheight()
+    if vim.opt.cmdheight._value == 0 then
+        vim.opt.cmdheight = vim.v.count == 0 and 1 or vim.v.count
+    else
+        vim.opt.cmdheight = vim.v.count == 0 and 0 or vim.v.count
+    end
+end
 
 vim.keymap.set("n", "<leader>vs", toggle_statusline, { desc = "Toggle lualine statusline", silent = true })
 vim.keymap.set("n", "<leader>vt", toggle_tabline, { desc = "Toggle lualine tabline", silent = true })
+vim.keymap.set("n", "<leader>vc", toggle_cmdheight, { desc = "Change/toggle cmdheight", silent = true })
 
 toggle_tabline()
