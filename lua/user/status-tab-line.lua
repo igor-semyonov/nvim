@@ -69,6 +69,21 @@ lualine.setup({
 					return str:sub(1, 3)
 				end,
 			},
+			{
+				function()
+					local reg = vim.fn.reg_recording()
+					if reg ~= "" then
+						return "Recording @" .. reg
+					else
+						return "" -- Return an empty string if not recording
+					end
+				end,
+				color = {
+					bg = "blue",
+					fg = "red",
+					gui = "bold",
+				},
+			},
 		},
 		lualine_b = { custom_fname },
 		lualine_c = { "diagnostics" },
@@ -140,11 +155,11 @@ local function toggle_tabline()
 	end
 end
 local function toggle_cmdheight()
-    if vim.opt.cmdheight._value == 0 then
-        vim.opt.cmdheight = vim.v.count == 0 and 1 or vim.v.count
-    else
-        vim.opt.cmdheight = vim.v.count == 0 and 0 or vim.v.count
-    end
+	if vim.opt.cmdheight._value == 0 then
+		vim.opt.cmdheight = vim.v.count == 0 and 1 or vim.v.count
+	else
+		vim.opt.cmdheight = vim.v.count == 0 and 0 or vim.v.count
+	end
 end
 
 vim.keymap.set("n", "<leader>vs", toggle_statusline, { desc = "Toggle lualine statusline", silent = true })
