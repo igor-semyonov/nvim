@@ -69,23 +69,25 @@ lualine.setup({
 					return str:sub(1, 3)
 				end,
 			},
-			{
-				function()
-					local reg = vim.fn.reg_recording()
-					if reg ~= "" then
-						return "Recording @" .. reg
-					else
-						return "" -- Return an empty string if not recording
-					end
-				end,
-				color = {
-					bg = "blue",
-					fg = "red",
-					gui = "bold",
-				},
-			},
 		},
-		lualine_b = { custom_fname },
+		lualine_b = {
+			custom_fname,
+            {
+                function()
+                    local reg = vim.fn.reg_recording()
+                    if reg ~= "" then
+                        return "Recording @" .. reg
+                    else
+                        return "" -- Return an empty string if not recording
+                    end
+                end,
+                color = {
+                    bg = "blue",
+                    fg = "red",
+                    gui = "bold",
+                },
+            },
+		},
 		lualine_c = { "diagnostics" },
 		-- lualine_c = { "os.date('%a')", "data", "require'lsp-status'.status()" },
 		lualine_x = { "searchcount", "encoding", "filetype" },
