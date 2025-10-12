@@ -4,6 +4,7 @@ require("conform").setup({
         lua = { "stylua" },
         yaml = { "yamlfmt" },
         c = { "clang-format" },
+        xml = {"xmlformat"},
         python = { "isort", "black" },
         cmake = { "gersemi" },
         rust = { "rustfmt" },

@@ -143,6 +143,7 @@
           taplo
           texliveFull
           alejandra
+          xmlformat
         ];
       };
 
