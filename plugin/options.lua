@@ -48,7 +48,7 @@ local options = {
 	guicursor = { "a:block-Cursor", "i:blinkon250", "a:blinkoff100" },
 	hidden = true,
 	spelllang = "en",
-	spellfile = os.getenv("HOME") .. "/.config/nvim/spell/en.utf-8.add",
+	spellfile = os.getenv("HOME") .. "/.config/" .. nixCats.cats.nixCats_packageName .. "/spell/en.utf-8.add",
 }
 for k, v in pairs(options) do
 	opt[k] = v
