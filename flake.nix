@@ -150,54 +150,58 @@
       # This is for plugins that will load at startup without using packadd:
       startupPlugins = {
         gitPlugins = with pkgs.neovimPlugins; [];
-        general = with pkgs.vimPlugins; [
-          nightfox-nvim
-          nvim-colorizer-lua
-          lualine-nvim
-          nvim-web-devicons
+        general = let
+          nvim-lsp-endhints = pkgs.callPackage (import ./nix-additional-plugins/nvim-lsp-endhints.nix) {};
+        in
+          with pkgs.vimPlugins; [
+            nightfox-nvim
+            nvim-colorizer-lua
+            lualine-nvim
+            nvim-web-devicons
 
-          # cmp
-          nvim-cmp
-          lspkind-nvim
-          cmp-nvim-lsp
-          cmp-nvim-lsp-signature-help
-          cmp-path
-          cmp-buffer
-          luasnip
-          cmp_luasnip
-          friendly-snippets
-          cmp-nvim-lua
+            # cmp
+            nvim-cmp
+            lspkind-nvim
+            cmp-nvim-lsp
+            cmp-nvim-lsp-signature-help
+            cmp-path
+            cmp-buffer
+            luasnip
+            cmp_luasnip
+            friendly-snippets
+            cmp-nvim-lua
 
-          # delimiters
-          vim-surround
-          auto-pairs
-          rainbow-delimiters-nvim
+            # delimiters
+            vim-surround
+            auto-pairs
+            rainbow-delimiters-nvim
 
-          oil-nvim
-          which-key-nvim
-          vimtex
-          nvim-ufo
-          promise-async
-          nerdcommenter
-          gitsigns-nvim
-          plenary-nvim
-          diffview-nvim
-          neogit
-          telescope-nvim
-          telescope-fzf-native-nvim
-          telescope-smart-history-nvim
-          nvim-treesitter.withAllGrammars
-          vim-illuminate
-          lsp_signature-nvim
-          conform-nvim
-          lazydev-nvim
-          nvim-lspconfig
-          mason-nvim
-          vim-tmux-navigator
-          otter-nvim
+            oil-nvim
+            which-key-nvim
+            vimtex
+            nvim-ufo
+            promise-async
+            nerdcommenter
+            gitsigns-nvim
+            plenary-nvim
+            diffview-nvim
+            neogit
+            telescope-nvim
+            telescope-fzf-native-nvim
+            telescope-smart-history-nvim
+            nvim-treesitter.withAllGrammars
+            vim-illuminate
+            lsp_signature-nvim
+            conform-nvim
+            lazydev-nvim
+            nvim-lspconfig
+            mason-nvim
+            vim-tmux-navigator
+            otter-nvim
 
-          rustaceanvim
-        ];
+            rustaceanvim
+            nvim-lsp-endhints
+          ];
       };
 
       # not loaded automatically at startup.
