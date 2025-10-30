@@ -44,7 +44,7 @@ require("nightfox").setup({
 			Folded = { bg = "#FF4040" },
 			NormalFloat = { bg = "black" },
 			FloatBorder = { bg = "black", fg = monk },
-			illuminatedWordText = {fg="#202020", bg = "#2020FF" },
+			illuminatedWordText = { fg = "#202020", bg = "#2020FF" },
 
 			-- diagnostics
 			NumError = { bg = "#FF3030" },
@@ -52,6 +52,8 @@ require("nightfox").setup({
 			NumWarn = { bg = "#FFA500" },
 			NumInfo = { bg = "#FFEA00" },
 			NumHint = { bg = "#0020FF" },
+
+			LspInlayHint = { bg = "#202020" },
 		},
 	},
 })

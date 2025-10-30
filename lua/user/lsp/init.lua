@@ -25,8 +25,8 @@ require("lsp-endhints").setup({
     },
     label = {
         truncateAtChars = 20,
-        padding = 1,
-        marginLeft = 0,
+        padding = 0,
+        marginLeft = 2,
         sameKindSeparator = ", ",
     },
     extmark = {
