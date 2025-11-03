@@ -144,6 +144,7 @@
           texliveFull
           alejandra
           xmlformat
+          gersemi
         ];
       };
 
