@@ -48,7 +48,8 @@ require("nightfox").setup({
 
 			-- diagnostics
 			NumError = { bg = "#FF3030" },
-			LineError = { bg = "#FF0000" },
+			LineError = { bg = "#201050" },
+			-- LineError = { bg = "#FF0000" },
 			NumWarn = { bg = "#FFA500" },
 			NumInfo = { bg = "#FFEA00" },
 			NumHint = { bg = "#0020FF" },
