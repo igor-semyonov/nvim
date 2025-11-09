@@ -25,6 +25,9 @@ local servers = {
 	"vhdl_ls",
 	"nixd",
 	-- "hdl_checker",
+
+    "tailwindcss",
+    "cssls",
 }
 
 local settings = {

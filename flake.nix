@@ -145,6 +145,11 @@
           alejandra
           xmlformat
           gersemi
+
+          # css
+          prettier
+          tailwindcss-language-server
+          vscode-css-languageserver
         ];
       };
 
