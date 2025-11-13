@@ -59,10 +59,9 @@ local opts = {
 			},
 			experimental = {
 				classRegex = {
-					'class\\s*=\\s*"([^"]*)"', -- Basic regex for class attributes
+					'class\\s*=\\s*"([^"]*)"',
 					'class!\\s*=\\s*"([^"]*)"',
-					'rsx!\\s*\\{.*class:\\s*"([^"]*)".*\\}', -- For Dioxus RSX syntax
-					-- Add other regex if you use different ways of defining classes in your Dioxus components
+					'rsx!\\s*\\{[\\n\\s\\S]*class:\\s*"([^"]*)"[\\n\\s\\S]*\\}',
 				},
 			},
 		},
