@@ -38,7 +38,6 @@ local options = {
 	numberwidth = 2, -- set number column width to 2 {default 4}
 	inccommand = "split",
 
-	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
 	wrap = true, -- display lines as one long line
 	linebreak = false, -- companion to wrap, don't split words
 	scrolloff = 2, -- minimal number of screen lines to keep above and below the cursor
@@ -49,6 +48,11 @@ local options = {
 	hidden = true,
 	spelllang = "en",
 	spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add",
+
+    foldcolumn="auto:1",
+    signcolumn="auto:1",
+    statuscolumn="%l%s%C"
+
 }
 for k, v in pairs(options) do
 	opt[k] = v
