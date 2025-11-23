@@ -8,8 +8,9 @@ local servers = {
 	"nil_ls",
 
 	-- "pyright",
-	"pylsp",
+	-- "pylsp",
 	"ruff",
+    "pyrefly",
 
 	"bashls",
 	-- "yamlls",

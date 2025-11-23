@@ -123,6 +123,7 @@
           pyright
           python313Packages.python-lsp-server
           ruff
+          pyrefly
           bash-language-server
           yaml-language-server
           vscode-json-languageserver
