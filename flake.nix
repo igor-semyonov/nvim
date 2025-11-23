@@ -200,6 +200,7 @@
             lsp_signature-nvim
             conform-nvim
             lazydev-nvim
+            neoconf-nvim
             nvim-lspconfig
             mason-nvim
             vim-tmux-navigator

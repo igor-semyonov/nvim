@@ -3,6 +3,7 @@ if not status_ok then
 	return
 end
 
+require("neoconf").setup()
 require("user.lsp.servers")
 require("user.lsp.handlers").setup()
 require("user.lsp.signature")
@@ -17,22 +18,22 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 })
 
 require("lsp-endhints").setup({
-    icons = {
-        type = "󰜁 ",
-        parameter = "󰏪 ",
-        offspec = " ", -- hint kind not defined in official LSP spec
-        unknown = " ", -- hint kind is nil
-    },
-    label = {
-        truncateAtChars = 20,
-        padding = 0,
-        marginLeft = 2,
-        sameKindSeparator = ", ",
-    },
-    extmark = {
-        priority = 50,
-    },
-    autoEnableHints = true,
+	icons = {
+		type = "󰜁 ",
+		parameter = "󰏪 ",
+		offspec = " ", -- hint kind not defined in official LSP spec
+		unknown = " ", -- hint kind is nil
+	},
+	label = {
+		truncateAtChars = 20,
+		padding = 0,
+		marginLeft = 2,
+		sameKindSeparator = ", ",
+	},
+	extmark = {
+		priority = 50,
+	},
+	autoEnableHints = true,
 })
 vim.keymap.set("n", "<leader>vh", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
