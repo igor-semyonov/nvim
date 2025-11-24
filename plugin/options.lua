@@ -49,9 +49,9 @@ local options = {
 	spelllang = "en",
 	spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add",
 
-    foldcolumn="auto:1",
+    foldcolumn="0",
     signcolumn="auto:1",
-    statuscolumn="%l%s%C"
+    statuscolumn="%s%l"
 
 }
 for k, v in pairs(options) do
