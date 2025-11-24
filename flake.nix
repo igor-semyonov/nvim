@@ -108,7 +108,6 @@
         general = with pkgs; [
           ripgrep
           fzf
-          rust-analyzer
           # luajitPackages.luafilesystem
 
           # lsp
@@ -134,6 +133,7 @@
           texlab
           matlab-language-server
           cmake-language-server
+          matlab-language-server
 
           # formatters
           stylua
