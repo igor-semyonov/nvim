@@ -54,7 +54,7 @@ require("nightfox").setup({
 			NumInfo = { bg = "#FFEA00", fg = "black" },
 			NumHint = { bg = "#0020FF", fg = "black" },
 
-			LspInlayHint = { bg = "#202020" },
+			LspInlayHint = { bg = "#404040" },
 		},
 	},
 })

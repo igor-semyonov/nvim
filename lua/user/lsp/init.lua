@@ -25,7 +25,7 @@ require("lsp-endhints").setup({
 		unknown = " ", -- hint kind is nil
 	},
 	label = {
-		truncateAtChars = 20,
+		truncateAtChars = 80,
 		padding = 0,
 		marginLeft = 2,
 		sameKindSeparator = ", ",
