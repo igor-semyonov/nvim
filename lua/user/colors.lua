@@ -47,12 +47,12 @@ require("nightfox").setup({
 			illuminatedWordText = { fg = "#202020", bg = "#2020FF" },
 
 			-- diagnostics
-			NumError = { bg = "#FF3030" },
-			LineError = { bg = "#201050" },
+			NumError = { bg = "#0080FF" },
+			-- LineError = { bg = "#201050" },
 			-- LineError = { bg = "#FF0000" },
-			NumWarn = { bg = "#FFA500", fg = "black" },
+			NumHint = { bg = "#FFA500", fg = "black" },
 			NumInfo = { bg = "#FFEA00", fg = "black" },
-			NumHint = { bg = "#0020FF", fg = "black" },
+			NumWarn = { bg = "#00FF20", fg = "black" },
 
 			LspInlayHint = { bg = "#404040" },
 		},
