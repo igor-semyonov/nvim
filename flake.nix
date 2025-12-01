@@ -113,6 +113,7 @@
           # lsp
           cmake
           rust-analyzer
+          clippy
           hyprls
           clang-tools
           lua-language-server
@@ -151,6 +152,7 @@
           prettier
           tailwindcss-language-server
           vscode-css-languageserver
+          vale
         ];
       };
 
@@ -209,6 +211,9 @@
 
             rustaceanvim
             nvim-lsp-endhints
+
+            nvim-lint
+            # ale
           ];
       };
 

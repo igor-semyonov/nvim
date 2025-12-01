@@ -8,6 +8,7 @@ require("user.lsp.servers")
 require("user.lsp.handlers").setup()
 require("user.lsp.signature")
 require("user.lsp.formatter")
+require("user.lsp.lint")
 require("lazydev")
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
