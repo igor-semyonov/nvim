@@ -47,7 +47,7 @@ require("nightfox").setup({
 			illuminatedWordText = { fg = "#202020", bg = "#2020FF" },
 
 			-- diagnostics
-			NumError = { bg = "#0080FF" },
+			NumError = { bg = "#0080FF", fg="#FF0000" },
 			-- LineError = { bg = "#201050" },
 			-- LineError = { bg = "#FF0000" },
 			NumHint = { bg = "#FFA500", fg = "black" },
