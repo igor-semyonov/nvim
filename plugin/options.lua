@@ -50,7 +50,7 @@ local options = {
 	spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add",
 
     foldcolumn="0",
-    signcolumn="auto:1",
+    signcolumn="yes:1",
     statuscolumn="%s%l"
 
 }
