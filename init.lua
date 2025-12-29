@@ -40,6 +40,10 @@ require("nvim-treesitter.configs").setup({
 	-- }
 })
 
+require("render-markdown").setup()
+require("img-clip").setup()
+vim.keymap.set("n", "<leader><leader>p", "<cmd>PasteImage<cr>", { desc = "Paste image from system clipboard" })
+
 require("user.lsp")
 
 local keys = {

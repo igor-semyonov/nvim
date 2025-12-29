@@ -153,6 +153,13 @@
           tailwindcss-language-server
           vscode-css-languageserver
           vale
+
+          imagemagick
+          ghostscript
+          mermaid-cli
+          lazygit
+          wl-clipboard
+          python313Packages.pylatexenc
         ];
       };
 
@@ -214,6 +221,10 @@
 
             nvim-lint
             # ale
+
+            fzf-lua
+            img-clip-nvim
+            render-markdown-nvim
           ];
       };
 
