@@ -3,8 +3,6 @@ local opts_no_silent = { noremap = true, silent = false }
 local tts_cmd = ":.w ! tts &<CR><CR>"
 local tts_cmd_v = "::w ! tts &<CR><CR>gv"
 
-local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.keymap.set
 
@@ -84,13 +82,14 @@ keymap("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 -- keymap("n", "<C-k>", "<C-w>k", opts)
 -- keymap("n", "<C-l>", "<C-w>l", opts)
 for _, m in pairs({ "t", "i" }) do
---     keymap(m, "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
---     keymap(m, "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
---     keymap(m, "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
---     keymap(m, "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-    keymap(m, "<A-h>", "<C-\\><C-N>:bprev<CR>")
-    keymap(m, "<A-l>", "<C-\\><C-N>:bnext<CR>")
-    -- keymap(m, "<A-q>", "<C-\\><C-N>:bd #<CR>")
+	-- local term_opts = { silent = true }
+	--     keymap(m, "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+	--     keymap(m, "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+	--     keymap(m, "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+	--     keymap(m, "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+	keymap(m, "<A-h>", "<C-\\><C-N>:bprev<CR>")
+	keymap(m, "<A-l>", "<C-\\><C-N>:bnext<CR>")
+	-- keymap(m, "<A-q>", "<C-\\><C-N>:bd #<CR>")
 end
 
 -- Navigate buffers
@@ -104,3 +103,14 @@ keymap("n", "<leader>Q", ":bd!<CR>", opts)
 -- keymap("n", "<A-q>", ":bd #<CR>", opts)
 keymap("n", "<leader>o", ":ed ", opts_no_silent)
 keymap("n", "<leader>s", ":w<CR>", opts)
+
+-- quickfix
+QF_KEY = "<leader>w"
+QF_KEYMAP = function(lhs, rhs, desc)
+	keymap("n", QF_KEY .. lhs, rhs, { noremap = true, desc = desc })
+end
+QF_KEYMAP("o", ":5copen<CR>", "Open quickfix list")
+QF_KEYMAP("q", ":cclose<CR>", "Close quickfix list")
+QF_KEYMAP("n", ":cnext<CR>", "Next quickfix item")
+QF_KEYMAP("p", ":cprev<CR>", "Previous quickfix item")
+QF_KEYMAP("d", ":cdo ", "Quickfix do")
