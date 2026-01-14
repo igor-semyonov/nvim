@@ -147,6 +147,7 @@
           alejandra
           xmlformat
           gersemi
+          shfmt
 
           # css
           prettier

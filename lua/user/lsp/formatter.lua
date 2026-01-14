@@ -5,6 +5,7 @@ require("conform").setup({
 		yaml = { "yamlfmt" },
 		c = { "clang-format" },
 		xml = { "xmlformat" },
+		sh = { "shfmt" },
 		python = { "isort", "black" },
 		cmake = { "gersemi" },
 		rust = { "rustfmt" },
@@ -33,7 +34,7 @@ require("conform").setup({
 	-- Customize formatters
 	formatters = {
 		shfmt = {
-			prepend_args = { "-i", "2" },
+			prepend_args = { "-i", "4" },
 		},
 	},
 })
