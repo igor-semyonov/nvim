@@ -26,18 +26,29 @@ require("user.git")
 require("user.telescope")
 
 local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
--- ts_update() -- not needed since treesitter parsers are  managed by nix
-require("nvim-treesitter.configs").setup({
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"rust",
+		"python",
+		"zig",
+		"sh",
+		"json",
+		"docker",
+		"yml",
+		"yaml",
+		"toml",
+		"matlab",
+		"nix",
 	},
-	indent = { enable = true },
-	-- rainbow = {
-	--     enable = true,
-	--     extended_mode = true,
-	--     max_file_lines = nil,
-	-- }
+	callback = function()
+		-- syntax highlighting, provided by Neovim
+		vim.treesitter.start()
+		-- folds, provided by Neovim
+		vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		vim.wo.foldmethod = "expr"
+		-- indentation, provided by nvim-treesitter
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	end,
 })
 
 require("render-markdown").setup()
@@ -56,5 +67,7 @@ local keys = {
 for _, k in ipairs(keys) do
 	vim.keymap.set("n", k[1], k[2], { desc = k[3] })
 end
+
+require("user.molten")
 
 require("user.which-key")
