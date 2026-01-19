@@ -12,7 +12,7 @@ local cfg = {
     -- mode, 10 by default
 
     max_height = 6,                                -- max height of signature floating_window
-    max_width = 76,                                -- max_width of signature floating_window
+    max_width = 46,                                -- max_width of signature floating_window
     noice = false,                                 -- set to true if you using noice to render markdown
     wrap = true,                                   -- allow doc/signature text wrap inside floating_window, useful if your lsp return doc/sig is too long
 
@@ -55,8 +55,8 @@ local cfg = {
     toggle_key = "<A-x>",                            -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
     toggle_key_flip_floatwin_setting = true,         -- true: toggle float setting after toggle key pressed
 
-    select_signature_key = "<C-S><C-N>",             -- cycle to next signature, e.g. '<M-n>' function overloading
-    move_cursor_key = "<C-S><C-W>",                  -- imap, use nvim_set_current_win to move cursor between current win and floating
+    select_signature_key = "<A-z>",             -- cycle to next signature, e.g. '<M-n>' function overloading
+    move_cursor_key = nil,                  -- imap, use nvim_set_current_win to move cursor between current win and floating
 }
 
 require("lsp_signature").setup(cfg) -- no need to specify bufnr if you don't use toggle_key

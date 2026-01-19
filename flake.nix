@@ -229,11 +229,11 @@
 
             fzf-lua
             img-clip-nvim
-            render-markdown-nvim
+            # render-markdown-nvim
 
             # molten
-            image-nvim
-            molten-nvim
+            # image-nvim
+            # molten-nvim
           ];
       };
 

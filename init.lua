@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-require("render-markdown").setup()
+-- require("render-markdown").setup()
 require("img-clip").setup()
 vim.keymap.set("n", "<leader><leader>p", "<cmd>PasteImage<cr>", { desc = "Paste image from system clipboard" })
 

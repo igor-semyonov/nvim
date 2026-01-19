@@ -60,12 +60,20 @@ cmp.setup({
 	--     },
 	-- },
 	window = {
-		completion = vim.tbl_extend("keep", { col_offset = 0 }, cmp.config.window.bordered()),
-		documentation = vim.tbl_extend("keep", { max_width = 40, max_height = 6 }, cmp.config.window.bordered()),
+		completion = vim.tbl_extend(
+			"keep",
+			{ border = "rounded", col_offset = 0 },
+			cmp.config.window.bordered("double")
+		),
+		documentation = vim.tbl_extend(
+			"keep",
+			{ border = "rounded", max_width = 40, max_height = 7 },
+			cmp.config.window.bordered()
+		),
 	},
 	mapping = {
 		-- ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<leader><CR>"] = cmp.mapping.confirm({ select = true }),
+		["<leader><CR>"] = cmp.mapping.confirm({ select = true }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-j>"] = cmp.mapping.select_next_item(),
