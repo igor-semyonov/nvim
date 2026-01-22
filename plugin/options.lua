@@ -51,11 +51,12 @@ local options = {
 
     foldcolumn="0",
     signcolumn="yes:1",
-    statuscolumn="%s%l"
+    statuscolumn="%l%s"
 
 }
 for k, v in pairs(options) do
 	opt[k] = v
+
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufFilePost", "BufNewFile", "BufRead" }, {

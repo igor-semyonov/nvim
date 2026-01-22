@@ -40,6 +40,7 @@ require("nightfox").setup({
 			CursorLine = { bg = crosshair },
 			CursorColumn = { bg = crosshair },
 			CursorLineNr = { fg = monk, bg = monk_inverse },
+			CursorLineSign = { fg = monk, bg = monk_inverse },
 			-- Folded = { bg = "orange" },
 			Folded = { bg = "#FF4040" },
 			NormalFloat = { bg = "black" },
@@ -47,12 +48,12 @@ require("nightfox").setup({
 			illuminatedWordText = { fg = "#202020", bg = "#2020FF" },
 
 			-- diagnostics
-			NumError = { bg = "#0080FF", fg = "#FF0000" },
-			-- LineError = { bg = "#201050" },
-			-- LineError = { bg = "#FF0000" },
 			NumHint = { bg = "#FFA500", fg = "black" },
 			NumInfo = { bg = "#FFEA00", fg = "black" },
 			NumWarn = { bg = "#00FF20", fg = "black" },
+            NumError = { bg = "#0080FF", fg = "#FF0000" },
+            -- LineError = { bg = "#201050" },
+            -- LineError = { bg = "#FF0000" },
 
 			LspInlayHint = { bg = "#404040" },
 		},
