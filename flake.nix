@@ -105,67 +105,73 @@
       # at RUN TIME for plugins. Will be available to PATH within neovim terminal
       # this includes LSPs
       lspsAndRuntimeDeps = {
-        general = with pkgs; [
-          ripgrep
-          fzf
-          # luajitPackages.luafilesystem
+        general = with pkgs;
+          [
+            ripgrep
+            fzf
+            # luajitPackages.luafilesystem
 
-          # lsp
-          cmake
-          rust-analyzer
-          clippy
-          hyprls
-          clang-tools
-          lua-language-server
-          ast-grep
-          nil
-          nixd
-          pyright
-          python313Packages.python-lsp-server
-          ruff
-          pyrefly
-          bash-language-server
-          yaml-language-server
-          vscode-json-languageserver
-          awk-language-server
-          docker-compose-language-service
-          ltex-ls
-          ltex-ls-plus
-          texlab
-          matlab-language-server
-          cmake-language-server
-          matlab-language-server
+            # lsp
+            cmake
+            rust-analyzer
+            clippy
+            hyprls
+            clang-tools
+            lua-language-server
+            ast-grep
+            nil
+            nixd
+            pyright
+            python313Packages.python-lsp-server
+            ruff
+            pyrefly
+            bash-language-server
+            yaml-language-server
+            vscode-json-languageserver
+            awk-language-server
+            docker-compose-language-service
+            ltex-ls
+            ltex-ls-plus
+            texlab
+            matlab-language-server
+            cmake-language-server
+            matlab-language-server
 
-          # formatters
-          stylua
-          yamlfmt
-          isort
-          black
-          rustfmt
-          taplo
-          texliveFull
-          alejandra
-          xmlformat
-          gersemi
-          shfmt
+            # formatters
+            stylua
+            yamlfmt
+            isort
+            black
+            rustfmt
+            taplo
+            texliveFull
+            alejandra
+            xmlformat
+            gersemi
+            shfmt
 
-          # css
-          prettier
-          tailwindcss-language-server
-          vscode-css-languageserver
-          vale
-
-          imagemagickBig
-          luajitPackages.magick
-          ghostscript
-          mermaid-cli
-          lazygit
-          wl-clipboard
-          python313Packages.pylatexenc
-          ueberzugpp
-          cairosvg
-          pnglatex
-        ];
+            # css
+            prettier
+            tailwindcss-language-server
+            vscode-css-languageserver
+            vale
+          ]
+          ++ (
+            if pkgs.stdenv.isDarwin
+            then []
+            else [
+              wl-clipboard
+              imagemagickBig
+              luajitPackages.magick
+              ghostscript
+              mermaid-cli
+              lazygit
+              python313Packages.pylatexenc
+              ueberzugpp
+              cairosvg
+              pnglatex
+            ]
+          );
       };
 
       # This is for plugins that will load at startup without using packadd:
