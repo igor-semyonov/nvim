@@ -156,22 +156,19 @@
             vscode-css-languageserver
             vale
           ]
-          ++ (
-            if pkgs.system == "x86_64-linux"
-            then [
-              wl-clipboard
-              imagemagickBig
-              luajitPackages.magick
-              ghostscript
-              mermaid-cli
-              lazygit
-              python313Packages.pylatexenc
-              ueberzugpp
-              cairosvg
-              pnglatex
-            ]
-            else []
-          );
+          ++ lib.optionals (pkgs.system == "x86_64-linux")
+          [
+            wl-clipboard
+            imagemagickBig
+            luajitPackages.magick
+            ghostscript
+            mermaid-cli
+            lazygit
+            python313Packages.pylatexenc
+            ueberzugpp
+            cairosvg
+            pnglatex
+          ];
       };
 
       # This is for plugins that will load at startup without using packadd:
