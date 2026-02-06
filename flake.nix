@@ -157,9 +157,8 @@
             vale
           ]
           ++ (
-            if pkgs.stdenv.isDarwin
-            then []
-            else [
+            if pkgs.system == "x86_64-linux"
+            then [
               wl-clipboard
               imagemagickBig
               luajitPackages.magick
@@ -171,6 +170,7 @@
               cairosvg
               pnglatex
             ]
+            else []
           );
       };
 
