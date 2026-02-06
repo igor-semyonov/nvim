@@ -51,11 +51,13 @@ require("nightfox").setup({
 			NumHint = { bg = "#FFA500", fg = "black" },
 			NumInfo = { bg = "#FFEA00", fg = "black" },
 			NumWarn = { bg = "#00FF20", fg = "black" },
-            NumError = { bg = "#0080FF", fg = "#FF0000" },
-            -- LineError = { bg = "#201050" },
-            -- LineError = { bg = "#FF0000" },
+			NumError = { bg = "#0080FF", fg = "#FF0000" },
+			-- LineError = { bg = "#201050" },
+			-- LineError = { bg = "#FF0000" },
 
 			LspInlayHint = { bg = "#404040" },
+
+			["@comment"] = { fg = "yellow", bg = crosshair },
 		},
 	},
 })
