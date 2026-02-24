@@ -58,6 +58,10 @@ require("nightfox").setup({
 			LspInlayHint = { bg = "#404040" },
 
 			["@comment"] = { fg = "yellow", bg = crosshair },
+
+			-- completion
+			CmpItemAbbr = { fg = "#2030BB"},
+			CmpItemAbbrMatch = { fg = "#3030FF", bg="#303030"},
 		},
 	},
 })
