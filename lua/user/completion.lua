@@ -191,6 +191,7 @@ cmp.setup({
 				luasnip = "[Snip]",
 				nvim_lua = "[Lua]",
 				latex_symbols = "[LTX]",
+				path = "[Path]",
 			},
 			maxwidth = {
 				-- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
@@ -213,7 +214,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
-        { name = "path" },
+		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
 		{ name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
