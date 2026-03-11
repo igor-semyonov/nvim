@@ -10,7 +10,7 @@ local servers = {
 	-- "pyright",
 	-- "pylsp",
 	"ruff",
-    "pyrefly",
+	"pyrefly",
 
 	"bashls",
 	-- "yamlls",
@@ -27,9 +27,16 @@ local servers = {
 	"nixd",
 	-- "hdl_checker",
 
-    "tailwindcss",
-    "cssls",
+	"tailwindcss",
+	"cssls",
 }
+
+vim.lsp.config("*", {
+	before_init = function(_, config)
+		local codesettings = require("codesettings")
+		codesettings.with_local_settings(config.name, config)
+	end,
+})
 
 local settings = {
 	ui = {

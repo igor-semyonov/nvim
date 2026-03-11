@@ -224,6 +224,7 @@
             vim-tmux-navigator
             otter-nvim
 
+            codesettings-nvim
             rustaceanvim
             nvim-lsp-endhints
 
