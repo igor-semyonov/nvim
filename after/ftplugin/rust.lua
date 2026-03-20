@@ -6,11 +6,10 @@ local rust_keymap = function(lhs, rhs, desc)
 end
 
 vim.keymap.set("n", "<F5>", "<esc>:w<bar>!cargo run<cr>", { silent = true, buffer = bufnr })
+vim.keymap.set("n", "<F4>", "<esc>:w<bar>!cargo test<cr>", { silent = true, buffer = bufnr })
 vim.keymap.set("n", "<F3>", "<esc>:w<bar>!cargo run --release<cr>", { silent = true, buffer = bufnr })
-vim.keymap.set("n", "<F4>", "<esc>:w<bar>!maturin develop<cr>", { silent = true, buffer = bufnr })
-vim.keymap.set("n", "<F6>", "<esc>:w<bar>!maturin develop --release<cr>", { silent = true, buffer = bufnr })
+vim.keymap.set("n", "<F6>", "<esc>:w<bar>!maturin develop<cr>", { silent = true, buffer = bufnr })
 vim.keymap.set("n", "<F7>", "<esc>:w<bar>!cargo clippy<cr>", { silent = true, buffer = bufnr })
-vim.keymap.set("n", "<F8>", "<esc>:w<bar>!cargo test<cr>", { silent = true, buffer = bufnr })
 vim.keymap.set("n", "<F9>", "<esc>:w<bar>!cargo doc --no-deps --open<cr>", { silent = true, buffer = bufnr })
 
 rust_keymap("a", function()
