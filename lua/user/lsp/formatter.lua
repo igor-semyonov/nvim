@@ -50,7 +50,7 @@ vim.keymap.set("n", "<leader>f", function()
 			local msg = vim.trim(err)
 			msg = msg:gsub("[\n\r]", " ")
 			msg = msg:sub(1, vim.opt.columns:get() - 14) .. "…"
-            vim.notify(msg, vim.log.levels.WARN)
+            vim.notify(msg, vim.log.levels.ERROR)
 		else
 		end
 	end)
