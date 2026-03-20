@@ -40,7 +40,20 @@ require("conform").setup({
 })
 
 vim.keymap.set("n", "<leader>f", function()
-	require("conform").format({ async = true, lsp_fallback = true })
+	require("conform").format({
+		async = true,
+		lsp_fallback = true,
+		timeout_ms = 1500,
+		quiet = true,
+	}, function(err, _)
+		if err then
+			local msg = vim.trim(err)
+			msg = msg:gsub("[\n\r]", " ")
+			msg = msg:sub(1, vim.opt.columns:get() - 14) .. "…"
+            vim.notify(msg, vim.log.levels.WARN)
+		else
+		end
+	end)
 end, {
 	desc = "Format buffer",
 })
