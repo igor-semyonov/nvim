@@ -60,8 +60,11 @@ require("nightfox").setup({
 			["@comment"] = { fg = "yellow", bg = crosshair },
 
 			-- completion
-			CmpItemAbbr = { fg = "#2030BB"},
-			CmpItemAbbrMatch = { fg = "#3030FF", bg="#303030"},
+			CmpItemAbbr = { fg = "#2030BB" },
+			CmpItemAbbrMatch = { fg = "#3030FF", bg = "#303030" },
+
+			WarningMsg = { bg = "#FFAC00", fg = "#000000" },
+			ErrorMsg = { bg = "#FF5C00", fg = "#0000FF" },
 		},
 	},
 })
