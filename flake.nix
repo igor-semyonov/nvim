@@ -105,10 +105,27 @@
       # at RUN TIME for plugins. Will be available to PATH within neovim terminal
       # this includes LSPs
       lspsAndRuntimeDeps = {
+        minimal = with pkgs; [
+          ripgrep
+          fzf
+          lua-language-server
+          nil
+          nixd
+          bash-language-server
+          yaml-language-server
+          vscode-json-languageserver
+          awk-language-server
+          docker-compose-language-service
+
+          # formatters
+          stylua
+          yamlfmt
+          alejandra
+          xmlformat
+          shfmt
+        ];
         general = with pkgs;
           [
-            ripgrep
-            fzf
             # luajitPackages.luafilesystem
 
             # lsp
@@ -117,38 +134,25 @@
             clippy
             hyprls
             clang-tools
-            lua-language-server
             ast-grep
-            nil
-            nixd
             pyright
             python313Packages.python-lsp-server
             ruff
             pyrefly
-            bash-language-server
-            yaml-language-server
-            vscode-json-languageserver
-            awk-language-server
-            docker-compose-language-service
             ltex-ls
             ltex-ls-plus
             texlab
             matlab-language-server
-            cmake-language-server
             matlab-language-server
+            cmake-language-server
 
             # formatters
-            stylua
-            yamlfmt
             isort
             black
             rustfmt
             taplo
             texliveFull
-            alejandra
-            xmlformat
             gersemi
-            shfmt
 
             # css
             prettier
@@ -174,7 +178,7 @@
       # This is for plugins that will load at startup without using packadd:
       startupPlugins = {
         gitPlugins = with pkgs.neovimPlugins; [];
-        general = let
+        minimal = let
           nvim-lsp-endhints = pkgs.callPackage (import ./nix-additional-plugins/nvim-lsp-endhints.nix) {};
         in
           with pkgs.vimPlugins; [
@@ -202,7 +206,6 @@
 
             oil-nvim
             which-key-nvim
-            vimtex
             nvim-ufo
             promise-async
             nerdcommenter
@@ -223,22 +226,24 @@
             mason-nvim
             vim-tmux-navigator
             otter-nvim
-
             codesettings-nvim
             rustaceanvim
             nvim-lsp-endhints
-
             nvim-lint
-            # ale
-
-            fzf-lua
-            img-clip-nvim
-            # render-markdown-nvim
-
-            # molten
-            # image-nvim
-            # molten-nvim
           ];
+        general = with pkgs.vimPlugins; [
+          vimtex
+
+          # ale
+
+          fzf-lua
+          img-clip-nvim
+          # render-markdown-nvim
+
+          # molten
+          # image-nvim
+          # molten-nvim
+        ];
       };
 
       # not loaded automatically at startup.
@@ -312,7 +317,6 @@
           suffix-path = true;
           suffix-LD = true;
           wrapRc = true;
-          # configDirName = "nvim-nixcats";
           configDirName = "nvim-nixcats";
           # IMPORTANT:
           # your alias may not conflict with your other packages.
@@ -322,7 +326,44 @@
         # and a set of categories that you want
         # (and other information to pass to lua)
         categories = {
+          minimal = true;
           general = true;
+          gitPlugins = true;
+          rust = true;
+          customPlugins = true;
+          test = true;
+          example = {
+            youCan = "add more than just booleans";
+            toThisSet = [
+              "and the contents of this categories set"
+              "will be accessible to your lua with"
+              "nixCats('path.to.value')"
+              "see :help nixCats"
+            ];
+          };
+        };
+      };
+      nvim-nixcats-minimal = {
+        pkgs,
+        name,
+        ...
+      }: {
+        # they contain a settings set defined above
+        # see :help nixCats.flake.outputs.settings
+        settings = {
+          suffix-path = true;
+          suffix-LD = true;
+          wrapRc = true;
+          configDirName = "nvim-nixcats";
+          # IMPORTANT:
+          # your alias may not conflict with your other packages.
+          aliases = ["vim"];
+          # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+        };
+        # and a set of categories that you want
+        # (and other information to pass to lua)
+        categories = {
+          minimal = true;
           gitPlugins = true;
           rust = true;
           customPlugins = true;
