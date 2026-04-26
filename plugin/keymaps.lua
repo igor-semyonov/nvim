@@ -1,7 +1,29 @@
 local opts = { noremap = true, silent = true }
 local opts_no_silent = { noremap = true, silent = false }
-local tts_cmd = ":.w ! tts &<CR><CR>"
-local tts_cmd_v = "::w ! tts &<CR><CR>gv"
+
+local send_to_tts = function(text)
+	local tmp_file = vim.fn.tempname()
+	vim.fn.writefile({ text }, tmp_file)
+
+	local job_id = vim.fn.jobstart({ "sh", "-c", 'tts < "$1"; rm -f "$1"', "_", tmp_file })
+
+	if job_id <= 0 then
+		vim.notify("Failed to start background job", vim.log.levels.ERROR)
+	end
+end
+vim.keymap.set("n", "<leader>t", function()
+	local line = vim.api.nvim_get_current_line()
+	send_to_tts(line)
+end, { desc = "Text-to-speach Line" })
+vim.keymap.set("v", "<leader>t", function()
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "x", false)
+	vim.schedule(function()
+		local lines = vim.fn.getline("'<", "'>")
+        vim.cmd("normal! gv")
+		local selection = table.concat(lines, "\n")
+		send_to_tts(selection)
+	end)
+end, { desc = "Text-to-speach Selection" })
 
 -- Shorten function name
 local keymap = vim.keymap.set
@@ -15,9 +37,6 @@ local keymap = vim.keymap.set
 --   command_mode = "c",
 
 -- Normal --
--- TTS
-keymap("n", "<leader>t", tts_cmd, opts)
-keymap("v", "<leader>t", tts_cmd_v, opts)
 
 -- navigate tabs
 -- keymap("n", "<C-Tab>", "<cmd>tabnext<cr>", opts)
