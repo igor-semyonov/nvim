@@ -113,9 +113,9 @@
           nixd
           bash-language-server
           yaml-language-server
-          vscode-json-languageserver
           awk-language-server
           docker-compose-language-service
+          vscode-langservers-extracted
 
           # formatters
           stylua
@@ -157,7 +157,6 @@
             # css
             prettier
             tailwindcss-language-server
-            vscode-css-languageserver
             vale
           ]
           ++ lib.optionals (pkgs.system == "x86_64-linux")
