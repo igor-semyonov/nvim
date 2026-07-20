@@ -4,20 +4,21 @@ inputs: {
   wlib,
   lib,
   pkgs,
+  system,
   ...
 }: {
   imports = [
     wlib.wrapperModules.neovim
-    # Per-language / per-group / per-tool modules (each self-contained).
     (inputs.import-tree ./modules)
   ];
 
   # Expose helpers/args to the imported modules via _module.args.
   config._module.args = {
     inherit inputs;
-    onLinux = pkgs.system == "x86_64-linux";
+    onLinux = system == "x86_64-linux";
     # an on-by-default toggle, overridable by disableAll (see below)
     mkCat = desc: lib.mkEnableOption desc // {default = true;};
+    system = pkgs.stdenv.hostPlatform.system;
   };
 
   # ---------------------------------------------------------------------------
@@ -28,8 +29,9 @@ inputs: {
   # ---------------------------------------------------------------------------
   config.settings.config_directory = ./.;
   config.settings.aliases = ["vim"];
-  # To build against neovim-nightly instead of nixpkgs' neovim-unwrapped:
-  # config.package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+
+  options.settings.nightly.enable = lib.mkEnableOption "Use neovim nightly";
+  config.package = lib.mkIf config.settings.nightly.enable inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
 
   # ---------------------------------------------------------------------------
   # `disableAll`: a master off-switch. It forces every toggle to false at an
@@ -101,7 +103,8 @@ inputs: {
     data = let
       nvim-lsp-endhints = pkgs.callPackage (import ./nix-additional-plugins/nvim-lsp-endhints.nix) {};
     in
-      (with pkgs.vimPlugins; [
+      with pkgs.vimPlugins; [
+        nvim-lsp-endhints
         nightfox-nvim
         nvim-colorizer-lua
         lualine-nvim
@@ -154,8 +157,7 @@ inputs: {
         vimtex
         fzf-lua
         img-clip-nvim
-      ])
-      ++ [nvim-lsp-endhints];
+      ];
     # tools every session wants, regardless of language toggles
     runtimePackages =
       (with pkgs; [
@@ -165,7 +167,7 @@ inputs: {
         xmlformat # xml
         yamlfmt
       ])
-      ++ lib.optionals (pkgs.system == "x86_64-linux") (with pkgs; [wl-clipboard]);
+      ++ lib.optionals pkgs.stdenv.isLinux [pkgs.wl-clipboard];
   };
 
   # ---------------------------------------------------------------------------

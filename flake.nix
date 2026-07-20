@@ -4,20 +4,22 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
-    wrappers.inputs.nixpkgs.follows = "nixpkgs";
+    wrappers = {
+      url = "github:BirdeeHub/nix-wrapper-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
-    # `nix fmt` / formatting check, wired in as a flake-parts module below.
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # Recursively imports ./modules/** into the neovim wrapper module, so each
-    # language/group/tool lives in its own file (drop a file = add a language).
     import-tree.url = "github:vic/import-tree";
-
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     # To pull a plugin that isn't in nixpkgs, add it here named `plugins-<name>`
@@ -33,7 +35,7 @@
     treefmt-nix,
     ...
   } @ inputs: let
-    module = nixpkgs.lib.modules.importApply ./module.nix inputs;
+    neovim-module = nixpkgs.lib.modules.importApply ./neovim.nix inputs;
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
@@ -45,10 +47,10 @@
       flake = let
         installModule = wrappers.lib.getInstallModule {
           name = "neovim";
-          value = module;
+          value = neovim-module;
         };
       in {
-        wrappers.neovim = module;
+        wrappers.neovim = neovim-module;
         nixosModules = {
           default = self.nixosModules.neovim;
           neovim = installModule;
@@ -86,7 +88,16 @@
         self',
         ...
       }: {
-        packages.default = self'.packages.neovim;
+        packages = {
+          default = self'.packages.neovim;
+          nightly = (self.wrappers.neovim.extendModules {
+            modules = [
+              (
+                {...}: {settings.nightly.enable = true;}
+              )
+            ];
+          }).config.wrap {inherit pkgs;};
+        };
         treefmt = {
           projectRootFile = "flake.nix";
           programs = {
