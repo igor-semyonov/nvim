@@ -25,6 +25,7 @@
     # To pull a plugin that isn't in nixpkgs, add it here named `plugins-<name>`
     # and reference it in module.nix via `config.nvim-lib.neovimPlugins.<name>`:
     # plugins-foo = { url = "github:owner/foo"; flake = false; };
+    plugins-nvim-lsp-endhints = { url = "github:chrisgrieser/nvim-lsp-endhints"; flake = false; };
   };
 
   outputs = {

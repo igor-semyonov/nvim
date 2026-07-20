@@ -100,11 +100,12 @@ inputs: {
   # per-spec config/lze is needed.
   # ---------------------------------------------------------------------------
   config.specs.core = {
-    data = let
-      nvim-lsp-endhints = pkgs.callPackage (import ./nix-additional-plugins/nvim-lsp-endhints.nix) {};
-    in
-      with pkgs.vimPlugins; [
+    data =
+      (with config.nvim-lib.neovimPlugins; [
+        # plugins from flake.inputs.plugins-*
         nvim-lsp-endhints
+      ])
+      ++ (with pkgs.vimPlugins; [
         nightfox-nvim
         nvim-colorizer-lua
         lualine-nvim
@@ -157,7 +158,7 @@ inputs: {
         vimtex
         fzf-lua
         img-clip-nvim
-      ];
+      ]);
     # tools every session wants, regardless of language toggles
     runtimePackages =
       (with pkgs; [
