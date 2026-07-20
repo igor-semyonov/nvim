@@ -97,7 +97,7 @@
             alejandra.enable = true; # nix
             stylua.enable = true; # lua
             taplo.enable = true; # toml
-            mdformat.enable = true; # markdown
+            prettier.enable = true; # markdown
           };
         };
 
