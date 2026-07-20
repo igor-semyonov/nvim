@@ -33,8 +33,6 @@
     treefmt-nix,
     ...
   } @ inputs: let
-    # importApply threads `inputs` into module.nix and keeps it a first-class
-    # module (so downstream flakes can import it and override options).
     module = nixpkgs.lib.modules.importApply ./module.nix inputs;
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -44,53 +42,51 @@
       ];
       systems = nixpkgs.lib.platforms.all;
 
-      # Registers the module and auto-generates `packages.<system>.neovim`.
-      flake.wrappers.neovim = module;
-
-      # Generically-importable home-manager / nixos modules.
-      # Enable with `wrappers.neovim.enable = true;` and set any option.
-      flake.nixosModules.neovim = wrappers.lib.getInstallModule {
-        name = "neovim";
-        value = module;
-      };
-      flake.nixosModules.default = self.nixosModules.neovim;
-      flake.homeModules.neovim = self.nixosModules.neovim;
-      flake.homeModules.default = self.nixosModules.neovim;
-
-      # Overlay replacing pkgs.neovim with the wrapped config.
-      flake.overlays.neovim = final: _prev: {
-        neovim = self.wrappers.neovim.wrap {pkgs = final;};
-      };
-      flake.overlays.default = self.overlays.neovim;
-
-      # Starter flakes for consuming this config. Init with:
-      #   nix flake init -t github:igor-semyonov/nvim#<name>
-      flake.templates = {
-        package = {
-          path = ./templates/package;
-          description = "Consume as a customized neovim package (devShell + package output)";
+      flake = let
+        installModule = wrappers.lib.getInstallModule {
+          name = "neovim";
+          value = module;
         };
-        home-manager = {
-          path = ./templates/home-manager;
-          description = "Install and customize via home-manager";
+      in {
+        wrappers.neovim = module;
+        nixosModules = {
+          default = self.nixosModules.neovim;
+          neovim = installModule;
         };
-        nixos = {
-          path = ./templates/nixos;
-          description = "Install and customize system-wide via NixOS";
+        homeModules = {
+          default = self.homeModules.neovim;
+          neovim = installModule;
         };
-        default = self.templates.package;
+        overlays = {
+          default = self.overlays.neovim;
+          neovim = final: _prev: {
+            neovim = self.wrappers.neovim.wrap {pkgs = final;};
+          };
+        };
+        templates = {
+          package = {
+            path = ./templates/package;
+            description = "Consume as a customized neovim package (devShell + package output)";
+          };
+          home-manager = {
+            path = ./templates/home-manager;
+            description = "Install and customize via home-manager";
+          };
+          nixos = {
+            path = ./templates/nixos;
+            description = "Install and customize system-wide via NixOS";
+          };
+          default = self.templates.package;
+        };
       };
 
       perSystem = {
         pkgs,
         config,
+        self',
         ...
       }: {
-        # `wrappers.flakeModules.wrappers` generates `packages.<sys>.neovim`;
-        # alias it to `default` so `nix run .` / `nix build .` work.
-        packages.default = self.packages.${pkgs.system}.neovim;
-
-        # `nix fmt` formats the repo; `nix flake check` verifies formatting.
+        packages.default = self'.packages.neovim;
         treefmt = {
           projectRootFile = "flake.nix";
           programs = {
@@ -100,11 +96,10 @@
             prettier.enable = true; # markdown
           };
         };
-
         devShells.default = pkgs.mkShell {
           name = "nvim";
           packages = [
-            self.packages.${pkgs.system}.neovim
+            self'.packages.neovim
             config.treefmt.build.wrapper # `treefmt` on PATH in the devShell
           ];
         };
