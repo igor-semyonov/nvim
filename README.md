@@ -16,6 +16,7 @@ Toggle namespaces (all default to enabled):
 ```bash
 nix run .            # launch
 nix build .          # -> ./result/bin/nvim (aliased as `vim`)
+nix fmt              # format nix/lua/toml/markdown (treefmt; checked by `nix flake check`)
 ```
 
 ## Consume from another flake

@@ -1,15 +1,15 @@
 return {
 	{
 		"tpope/vim-surround",
-        -- enabled = false,
+		-- enabled = false,
 	},
 	{
 		"jiangmiao/auto-pairs",
-        -- enabled = false,
+		-- enabled = false,
 	},
 	{
 		"hiphish/rainbow-delimiters.nvim",
-        -- enabled = false,
+		-- enabled = false,
 		config = function()
 			local rainbow_delimiters = require("rainbow-delimiters")
 

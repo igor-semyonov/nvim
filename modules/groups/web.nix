@@ -1,5 +1,9 @@
-{ lib, mkCat, config, ... }:
 {
+  lib,
+  mkCat,
+  config,
+  ...
+}: {
   options.groups.web.enable = mkCat "Web development (html, css, json, tailwind)";
 
   # Cascade the group's value to each member language at mkDefault priority, so

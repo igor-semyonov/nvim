@@ -1,5 +1,9 @@
-{ pkgs, mkCat, config, ... }:
 {
+  pkgs,
+  mkCat,
+  config,
+  ...
+}: {
   options.languages.rust.enable = mkCat "Rust tooling (rust-analyzer, clippy, rustfmt)";
   config.specs.rust = {
     enable = config.languages.rust.enable;

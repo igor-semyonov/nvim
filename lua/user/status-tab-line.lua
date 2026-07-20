@@ -72,21 +72,21 @@ lualine.setup({
 		},
 		lualine_b = {
 			custom_fname,
-            {
-                function()
-                    local reg = vim.fn.reg_recording()
-                    if reg ~= "" then
-                        return "Recording @" .. reg
-                    else
-                        return "" -- Return an empty string if not recording
-                    end
-                end,
-                color = {
-                    bg = "blue",
-                    fg = "red",
-                    gui = "bold",
-                },
-            },
+			{
+				function()
+					local reg = vim.fn.reg_recording()
+					if reg ~= "" then
+						return "Recording @" .. reg
+					else
+						return "" -- Return an empty string if not recording
+					end
+				end,
+				color = {
+					bg = "blue",
+					fg = "red",
+					gui = "bold",
+				},
+			},
 		},
 		lualine_c = { "diagnostics" },
 		-- lualine_c = { "os.date('%a')", "data", "require'lsp-status'.status()" },

@@ -1,12 +1,12 @@
 return {
 	{
 		"EdenEast/nightfox.nvim",
-        -- enabled = false,
+		-- enabled = false,
 		config = function()
 			require("user.colors")
 		end,
 	},
-    {
-        "norcalli/nvim-colorizer.lua",
-    }
+	{
+		"norcalli/nvim-colorizer.lua",
+	},
 }

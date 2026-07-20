@@ -1,5 +1,9 @@
-{ pkgs, mkCat, config, ... }:
 {
+  pkgs,
+  mkCat,
+  config,
+  ...
+}: {
   options.languages.html.enable = mkCat "HTML tooling (vscode-langservers-extracted, prettier)";
   config.specs.html = {
     enable = config.languages.html.enable;

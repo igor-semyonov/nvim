@@ -1,6 +1,6 @@
 local tts_cmd = "tts"
 if vim.uv.os_uname().sysname == "Darwin" then
-    tts_cmd = "say -v Samantha -r 750"
+	tts_cmd = "say -v Samantha -r 750"
 end
 
 local send_to_tts = function(text)
@@ -21,7 +21,7 @@ vim.keymap.set("v", "<leader>t", function()
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "x", false)
 	vim.schedule(function()
 		local lines = vim.fn.getline("'<", "'>")
-        vim.cmd("normal! gv")
+		vim.cmd("normal! gv")
 		local selection = table.concat(lines, "\n")
 		send_to_tts(selection)
 	end)

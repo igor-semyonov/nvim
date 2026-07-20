@@ -1,5 +1,9 @@
-{ pkgs, mkCat, config, ... }:
 {
+  pkgs,
+  mkCat,
+  config,
+  ...
+}: {
   options.languages.shell.enable = mkCat "Shell/Bash tooling (bash-language-server, shfmt, awk-ls)";
   config.specs.shell = {
     enable = config.languages.shell.enable;

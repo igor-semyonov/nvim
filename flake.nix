@@ -25,21 +25,19 @@
     # plugins-foo = { url = "github:owner/foo"; flake = false; };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      wrappers,
-      flake-parts,
-      treefmt-nix,
-      ...
-    }@inputs:
-    let
-      # importApply threads `inputs` into module.nix and keeps it a first-class
-      # module (so downstream flakes can import it and override options).
-      module = nixpkgs.lib.modules.importApply ./module.nix inputs;
-    in
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = {
+    self,
+    nixpkgs,
+    wrappers,
+    flake-parts,
+    treefmt-nix,
+    ...
+  } @ inputs: let
+    # importApply threads `inputs` into module.nix and keeps it a first-class
+    # module (so downstream flakes can import it and override options).
+    module = nixpkgs.lib.modules.importApply ./module.nix inputs;
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         wrappers.flakeModules.wrappers
         treefmt-nix.flakeModule
@@ -61,7 +59,7 @@
 
       # Overlay replacing pkgs.neovim with the wrapped config.
       flake.overlays.neovim = final: _prev: {
-        neovim = self.wrappers.neovim.wrap { pkgs = final; };
+        neovim = self.wrappers.neovim.wrap {pkgs = final;};
       };
       flake.overlays.default = self.overlays.neovim;
 
@@ -83,31 +81,33 @@
         default = self.templates.package;
       };
 
-      perSystem =
-        { pkgs, config, ... }:
-        {
-          # `wrappers.flakeModules.wrappers` generates `packages.<sys>.neovim`;
-          # alias it to `default` so `nix run .` / `nix build .` work.
-          packages.default = self.packages.${pkgs.system}.neovim;
+      perSystem = {
+        pkgs,
+        config,
+        ...
+      }: {
+        # `wrappers.flakeModules.wrappers` generates `packages.<sys>.neovim`;
+        # alias it to `default` so `nix run .` / `nix build .` work.
+        packages.default = self.packages.${pkgs.system}.neovim;
 
-          # `nix fmt` formats the repo; `nix flake check` verifies formatting.
-          treefmt = {
-            projectRootFile = "flake.nix";
-            programs = {
-              alejandra.enable = true; # nix
-              stylua.enable = true; # lua
-              taplo.enable = true; # toml
-              mdformat.enable = true; # markdown
-            };
-          };
-
-          devShells.default = pkgs.mkShell {
-            name = "nvim";
-            packages = [
-              self.packages.${pkgs.system}.neovim
-              config.treefmt.build.wrapper # `treefmt` on PATH in the devShell
-            ];
+        # `nix fmt` formats the repo; `nix flake check` verifies formatting.
+        treefmt = {
+          projectRootFile = "flake.nix";
+          programs = {
+            alejandra.enable = true; # nix
+            stylua.enable = true; # lua
+            taplo.enable = true; # toml
+            mdformat.enable = true; # markdown
           };
         };
+
+        devShells.default = pkgs.mkShell {
+          name = "nvim";
+          packages = [
+            self.packages.${pkgs.system}.neovim
+            config.treefmt.build.wrapper # `treefmt` on PATH in the devShell
+          ];
+        };
+      };
     };
 }

@@ -4,7 +4,7 @@ local gen_mapping_prefix = "<leader>e"
 return {
 	{
 		"nomnivore/ollama.nvim",
-        enabled = false,
+		enabled = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
@@ -64,7 +64,7 @@ return {
 	},
 	{
 		"David-Kunz/gen.nvim",
-        -- enabled = false,
+		-- enabled = false,
 		opts = {
 			model = "mistral", -- The default model to use.
 			host = "localhost", -- The host running the Ollama service.
@@ -123,7 +123,7 @@ return {
 	},
 	{
 		"danymat/neogen",
-        -- enabled = false,
+		-- enabled = false,
 		config = true,
 		-- Uncomment next line if you want to follow only stable versions
 		-- version = "*"

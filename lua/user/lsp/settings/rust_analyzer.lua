@@ -9,17 +9,17 @@ local opts = {
 			},
 			checkOnSave = true,
 			-- checkCommand = {
-            --     allFeatures = true,
+			--     allFeatures = true,
 			--     command = "cargo-clippy",
-            --     extraArgs = {
-            --         "--",
-            --         "--no-deps",
-            --         "-Dwarnings", --, Promote all warnings to errors
-            --         "-Dclippy::correctness",
-            --         "-Dclippy::complexity",
-            --         "-Dclippy::perf",
-            --         "-Dclippy::pedantic",
-            --     },
+			--     extraArgs = {
+			--         "--",
+			--         "--no-deps",
+			--         "-Dwarnings", --, Promote all warnings to errors
+			--         "-Dclippy::correctness",
+			--         "-Dclippy::complexity",
+			--         "-Dclippy::perf",
+			--         "-Dclippy::pedantic",
+			--     },
 			-- },
 			procMacro = {
 				enable = true,

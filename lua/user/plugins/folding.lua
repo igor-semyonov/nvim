@@ -2,7 +2,7 @@ return {
 	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = "kevinhwang91/promise-async",
-        -- enabled = false,
+		-- enabled = false,
 		config = function()
 			-- ufo folding
 			vim.o.foldcolumn = "0" -- '0' is not bad

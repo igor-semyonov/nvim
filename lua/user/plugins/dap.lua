@@ -1,7 +1,7 @@
 return {
 	{
 		"rcarriga/nvim-dap-ui",
-        -- enabled = false,
+		-- enabled = false,
 		dependencies = {
 			"mfussenegger/nvim-dap",
 			"nvim-neotest/nvim-nio",
@@ -137,7 +137,7 @@ return {
 
 			require("dap-python").setup("~/venv/debugpy/bin/python")
 
-            vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "red", linehl = "", numhl = "" })
+			vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "red", linehl = "", numhl = "" })
 			-- vim.highlight.create("DapBreakpoint", { ctermbg = 0, guifg = "#993939", guibg = "#31353f" }, false)
 			-- vim.highlight.create("DapLogPoint", { ctermbg = 0, guifg = "#61afef", guibg = "#31353f" }, false)
 			-- vim.highlight.create("DapStopped", { ctermbg = 0, guifg = "#98c379", guibg = "#31353f" }, false)

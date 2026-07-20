@@ -1,5 +1,11 @@
-{ pkgs, lib, mkCat, onLinux, config, ... }:
 {
+  pkgs,
+  lib,
+  mkCat,
+  onLinux,
+  config,
+  ...
+}: {
   options.languages.latex.enable = mkCat "LaTeX tooling (texlab, ltex, texliveFull, vale)";
   config.specs.latex = {
     enable = config.languages.latex.enable;

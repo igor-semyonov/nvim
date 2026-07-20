@@ -5,13 +5,13 @@ end
 vim.print(words)
 
 local opts = {
-    settings = {
-        ltex = {
-            dictionary = {
-                ["en-US"] = words,
-            },
-        },
-    }
+	settings = {
+		ltex = {
+			dictionary = {
+				["en-US"] = words,
+			},
+		},
+	},
 }
 
 return opts

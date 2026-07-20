@@ -49,14 +49,12 @@ local options = {
 	spelllang = "en",
 	spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add",
 
-    foldcolumn="0",
-    signcolumn="yes:1",
-    statuscolumn="%l%s"
-
+	foldcolumn = "0",
+	signcolumn = "yes:1",
+	statuscolumn = "%l%s",
 }
 for k, v in pairs(options) do
 	opt[k] = v
-
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufFilePost", "BufNewFile", "BufRead" }, {
