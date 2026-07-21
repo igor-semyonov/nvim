@@ -1,35 +1,51 @@
-local servers = {
-	"cmake",
-	-- "rust_analyzer", -- handled by rustaceanvim
-	"hyprls",
-	"clangd",
-	"lua_ls",
-	"ast_grep",
-	"nil_ls",
-
-	-- "pyright",
-	-- "pylsp",
-	"ruff",
-	"pyrefly",
-
-	"bashls",
-	-- "yamlls",
-	"jsonls",
-	"awk_ls",
-	"docker_compose_language_service",
-	"html",
-	-- "ltex",
-	"ltex_plus",
-	"texlab",
-	"matlab_ls",
-	"julials",
-	"vhdl_ls",
-	"nixd",
-	-- "hdl_checker",
-
-	"tailwindcss",
-	"cssls",
-}
+-- Servers grouped by the nix toggle that provisions their binary. A group is
+-- included only when its toggle is enabled (see lua/user/nix.lua); running
+-- without nix keeps everything. This avoids `vim.lsp.enable`-ing a server whose
+-- executable a disabled toggle never put on PATH.
+local servers = require("user.nix").collect({
+	languages = {
+		cmake = { "cmake" },
+		hypr = { "hyprls" },
+		clang = { "clangd" },
+		lua = { "lua_ls" },
+		nix = { "nixd", "nil_ls" },
+		python = {
+			"ruff",
+			"pyrefly",
+			-- "pyright",
+			-- "pylsp",
+		},
+		shell = { "bashls" },
+		json = { "jsonls" },
+		docker = { "docker_compose_language_service" },
+		html = {
+			"html",
+			"tailwindcss", -- shared: kept if html OR css OR tailwind is on
+		},
+		latex = {
+			"ltex_plus", -- shared: also serves markdown/plaintext
+			"texlab",
+			-- "ltex",
+		},
+		matlab = { "matlab_ls" },
+		css = {
+			"cssls",
+			"tailwindcss", -- shared (see html)
+		},
+		tailwind = { "tailwindcss" },
+		-- yaml = { "yamlls" },
+	},
+	tools = {
+		extras = { "ast_grep" },
+	},
+	always = {
+		"awk_ls",
+		"julials", -- no nix module yet
+		"vhdl_ls",
+		-- rust_analyzer handled by rustaceanvim (see bottom of file)
+		-- "hdl_checker",
+	},
+})
 
 vim.lsp.config("*", {
 	before_init = function(_, config)

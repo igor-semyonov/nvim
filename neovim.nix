@@ -176,7 +176,16 @@ inputs: {
   # ---------------------------------------------------------------------------
   config.runtimePkgs = config.specCollect (acc: v: acc ++ (v.runtimePackages or [])) [];
 
-  # Expose which languages are enabled to lua (optional; unused today).
-  # Read in lua via `require(vim.g.nix_info_plugin_name)(nil, "info", "languages", "<name>")`.
-  config.info.languages = builtins.mapAttrs (_: v: v.enable) config.languages;
+  # ---------------------------------------------------------------------------
+  # Expose the enable-state of every language/group/tool to lua. This becomes
+  # the `require('nix-info').info` table (name from `vim.g.nix_info_plugin_name`).
+  # Consumed via lua/user/nix.lua, which gates the *invoked* tool registries
+  # (LSP servers, conform formatters, nvim-lint linters) so we don't try to run
+  # binaries that a disabled toggle never put on PATH.
+  # ---------------------------------------------------------------------------
+  config.info = {
+    languages = builtins.mapAttrs (_: v: v.enable) config.languages;
+    groups = builtins.mapAttrs (_: v: v.enable) config.groups;
+    tools = builtins.mapAttrs (_: v: v.enable) config.tools;
+  };
 }
