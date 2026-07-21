@@ -96,7 +96,12 @@
           default = self'.packages.neovim;
           nightly = (self.wrappers.neovim.extendModules {
             modules = [
-              {settings.nightly.enable = true;}
+              {nightly = true;}
+            ];
+          }).config.wrap {inherit pkgs;};
+          minimal = (self.wrappers.neovim.extendModules {
+            modules = [
+              {disableAll = true;}
             ];
           }).config.wrap {inherit pkgs;};
         };

@@ -30,8 +30,8 @@ inputs: {
   config.settings.config_directory = ./.;
   config.settings.aliases = ["vim"];
 
-  options.settings.nightly.enable = lib.mkEnableOption "Use neovim nightly";
-  config.package = lib.mkIf config.settings.nightly.enable inputs.neovim-nightly-overlay.packages.${system}.neovim;
+  options.nightly = lib.mkEnableOption "Use neovim nightly";
+  config.package = lib.mkIf config.nightly inputs.neovim-nightly-overlay.packages.${system}.neovim;
 
   # ---------------------------------------------------------------------------
   # `disableAll`: a master off-switch. It forces every toggle to false at an
