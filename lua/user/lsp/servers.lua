@@ -33,8 +33,7 @@ local servers = {
 
 vim.lsp.config("*", {
 	before_init = function(_, config)
-		local codesettings = require("codesettings")
-		codesettings.with_local_settings(config.name, config)
+		require("codesettings").with_local_settings(config.name, config)
 	end,
 })
 
