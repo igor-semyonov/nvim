@@ -64,7 +64,7 @@ require("nightfox").setup({
 			CmpItemAbbrMatch = { fg = "#3030FF", bg = "#303030" },
 
 			WarningMsg = { bg = "#FFAC00", fg = "#000000" },
-			ErrorMsg = { bg = "#FF5C00", fg = "#0000FF" },
+			ErrorMsg = { bg = "#FF2C00", fg = "#00FF80" },
 		},
 	},
 })
