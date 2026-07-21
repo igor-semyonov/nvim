@@ -42,7 +42,7 @@ require("nightfox").setup({
 			CursorLineNr = { fg = monk, bg = monk_inverse },
 			CursorLineSign = { fg = monk, bg = monk_inverse },
 			-- Folded = { bg = "orange" },
-			Folded = { bg = "#FF4040" },
+			Folded = { bg = "#A04020" },
 			NormalFloat = { bg = "black" },
 			FloatBorder = { bg = "black", fg = monk },
 			illuminatedWordText = { fg = "#202020", bg = "#2020FF" },
