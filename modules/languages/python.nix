@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  options.languages.python.enable = mkCat "Python tooling (pyright, ruff, pyrefly, black, isort, pylsp)";
+  options.languages.python.enable = mkCat "Python tooling (pyright, ruff, pyrefly, pylsp)";
   config.specs.python = {
     enable = config.languages.python.enable;
     data = null;
@@ -13,8 +13,6 @@
       python313Packages.python-lsp-server
       ruff
       pyrefly
-      isort
-      black
     ];
   };
 }

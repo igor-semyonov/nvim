@@ -13,7 +13,7 @@ for _, entry in ipairs({
 	{ "c", { "clang-format" }, { "languages", "clang" } },
 	{ "xml", { "xmlformat" }, nil }, -- core
 	{ "sh", { "shfmt" }, { "languages", "shell" } },
-	{ "python", { "isort", "black" }, { "languages", "python" } },
+	{ "python", { "ruff_organize_imports", "ruff_format" }, { "languages", "python" } },
 	{ "cmake", { "gersemi" }, { "languages", "cmake" } },
 	{ "rust", { "rustfmt" }, { "languages", "rust" } },
 	{ "toml", { "taplo" }, nil }, -- core
