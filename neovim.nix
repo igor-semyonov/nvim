@@ -28,7 +28,13 @@ inputs: {
   #   lib.generators.mkLuaInline "vim.fn.stdpath('config')"
   # ---------------------------------------------------------------------------
   config.settings.config_directory = ./.;
-  config.settings.aliases = ["vim"];
+
+  options.aliases = lib.mkOption {
+    type = lib.types.listOf lib.types.singleLineStr;
+    default = ["vim"];
+    description = "List of aliases for this neovim";
+  };
+  config.settings.aliases = config.aliases;
 
   options.nightly = lib.mkEnableOption "Use neovim nightly";
   config.package = lib.mkIf config.nightly inputs.neovim-nightly-overlay.packages.${system}.neovim;

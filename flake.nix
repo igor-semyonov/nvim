@@ -96,7 +96,10 @@
           default = self'.packages.neovim;
           nightly = (self.wrappers.neovim.extendModules {
             modules = [
-              {nightly = true;}
+              {
+                nightly = true;
+                aliases = ["nvim-nightly" "vim"];
+              }
             ];
           }).config.wrap {inherit pkgs;};
           minimal = (self.wrappers.neovim.extendModules {
@@ -116,8 +119,9 @@
         };
         devShells.default = pkgs.mkShell {
           name = "nvim";
-          packages = [
-            self'.packages.neovim
+          packages = with self'.packages; [
+            neovim
+            nightly
             config.treefmt.build.wrapper # `treefmt` on PATH in the devShell
           ];
         };
