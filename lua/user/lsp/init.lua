@@ -39,4 +39,4 @@ vim.keymap.set("n", "<leader>vh", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toggle inlay LSP hints", silent = true })
 
-vim.lsp.set_log_level("WARN")
+vim.lsp.log.set_level("WARN")
