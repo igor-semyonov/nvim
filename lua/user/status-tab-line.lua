@@ -35,12 +35,14 @@ local default_status_colors = {
 -- "longnixfilename.nix" -> "longnixfi…nix". Only the final dot-segment counts
 -- as the extension, so "archive.tar.gz" has stem "archive.tar" and ext "gz",
 -- yielding "archive.t…gz". Trailing status markers (e.g. the readonly "[-]")
--- and any trailing whitespace are preserved untouched.
+-- are preserved untouched; bare trailing whitespace is dropped -- lualine emits
+-- a leading " " before the (now empty) modified symbol, which would otherwise
+-- leave a vestigial space after the filename when the buffer is unsaved.
 local function truncate_fname(str)
 	local base, suffix = str:match("^(.-)(%s*%[[^%]]*%]%s*)$")
 	if not base then
 		base = str:gsub("%s+$", "")
-		suffix = str:sub(#base + 1)
+		suffix = ""
 	end
 	local stem, ext = base:match("^(.*)%.([^%.]+)$")
 	if stem and ext then
@@ -137,8 +139,9 @@ function custom_buffers:init(options)
 	options = options or {}
 	-- force the parent to build its default active/inactive highlights
 	options.component_name = "buffers"
-	-- the background color already signals modified state, so drop the "●" marker
-	options.symbols = vim.tbl_deep_extend("force", options.symbols or {}, { modified = "" })
+	-- the background color already signals modified state, so drop the "●" marker;
+	-- also drop the "#" alternate-file marker (the Ctrl-^ target shouldn't be tagged)
+	options.symbols = vim.tbl_deep_extend("force", options.symbols or {}, { modified = "", alternate_file = "" })
 	custom_buffers.super.init(self, options)
 	-- unmodified buffers sit on black; selected gets bright fg, unselected dimmer
 	self.highlights.active = self:create_hl({ fg = colors.fg_active, bg = colors.black }, "active")
@@ -344,15 +347,24 @@ lualine.setup({
 		lualine_z = {},
 	},
 	tabline = {
+		-- Flat tabline: powerline separators only render at a color boundary, and
+		-- this config paints everything black when saved. Section separators (the
+		-- arrows between sections) would appear ONLY in the modified (green) state;
+		-- component separators appear between any two adjacent unselected entries.
+		-- Both shift later content by their glyph width, so we empty them -- EXCEPT
+		-- the component separators between tab NUMBERS, which we keep by design.
+		-- (The statusline keeps its powerline arrows.)
 		lualine_a = {
-			custom_tabs,
+			{ custom_tabs, section_separators = { left = "", right = "" }, component_separators = { left = "", right = "" } },
 		},
-		lualine_b = { custom_buffers },
+		lualine_b = {
+			{ custom_buffers, section_separators = { left = "", right = "" }, component_separators = { left = "", right = "" } },
+		},
 		lualine_y = {
-			"diff",
+			{ "diff", section_separators = { left = "", right = "" }, component_separators = { left = "", right = "" } },
 		},
 		lualine_z = {
-			"branch",
+			{ "branch", section_separators = { left = "", right = "" }, component_separators = { left = "", right = "" } },
 		},
 	},
 	winbar = {
