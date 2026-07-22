@@ -217,7 +217,7 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
-		{ name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
+		-- { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized (lsp_signature.nvim covers this in a richer float)
 		{ name = "calc" },
 	},
 	confirm_opts = {
