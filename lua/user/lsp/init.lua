@@ -3,7 +3,6 @@ if not status_ok then
 	return
 end
 
-require("neoconf").setup()
 require("user.lsp.servers")
 require("user.lsp.handlers").setup()
 require("user.lsp.signature")

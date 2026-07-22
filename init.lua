@@ -12,6 +12,7 @@ vim.g.maplocalleader = ","
 require("user.colors")
 require("user.status-tab-line")
 require("user.completion")
+require("user.delimiters")
 require("user.rainbow-delim")
 require("user.file-manager")
 require("user.vimtex")
@@ -67,7 +68,5 @@ local keys = {
 for _, k in ipairs(keys) do
 	vim.keymap.set("n", k[1], k[2], { desc = k[3] })
 end
-
--- require("user.molten")
 
 require("user.which-key")

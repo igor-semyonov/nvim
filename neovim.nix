@@ -124,8 +124,8 @@ inputs: {
         cmp-nvim-lua
 
         # delimiters
-        vim-surround
-        auto-pairs
+        nvim-surround
+        nvim-autopairs
         rainbow-delimiters-nvim
 
         oil-nvim
@@ -145,7 +145,6 @@ inputs: {
         lsp_signature-nvim
         conform-nvim
         lazydev-nvim
-        neoconf-nvim
         nvim-lspconfig
         mason-nvim
         vim-tmux-navigator
