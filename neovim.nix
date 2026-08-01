@@ -172,6 +172,7 @@ inputs: {
         taplo # toml
         xmlformat # xml
         yamlfmt
+        just
       ])
       ++ lib.optionals pkgs.stdenv.isLinux [pkgs.wl-clipboard];
   };

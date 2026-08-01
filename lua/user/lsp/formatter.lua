@@ -8,7 +8,9 @@ local nix = require("user.nix")
 -- everything.
 local formatters_by_ft = {}
 for _, entry in ipairs({
+
 	{ "lua", { "stylua" }, { "languages", "lua" } },
+	{ "just", { "just" }, nill },
 	{ "yaml", { "yamlfmt" }, nil }, -- core
 	{ "c", { "clang-format" }, { "languages", "clang" } },
 	{ "xml", { "xmlformat" }, nil }, -- core
