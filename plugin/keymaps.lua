@@ -109,3 +109,8 @@ QF_KEYMAP("q", ":cclose<CR>", "Close quickfix list")
 QF_KEYMAP("n", ":cnext<CR>", "Next quickfix item")
 QF_KEYMAP("p", ":cprev<CR>", "Previous quickfix item")
 QF_KEYMAP("d", ":cdo ", "Quickfix do")
+
+keymap("i", "<A-BS>", "<C-W>", {
+	desc = "Delete word backwards",
+	silent = true,
+})
