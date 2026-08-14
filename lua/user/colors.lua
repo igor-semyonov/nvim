@@ -1,6 +1,6 @@
 local dark_grey = "#666666"
 local bright_fg = "#EEEEEE"
-local crosshair = "#183018"
+local crosshair = "#081414"
 local monk = "#80FF80"
 local monk_inverse = "#800080"
 
@@ -40,7 +40,7 @@ require("nightfox").setup({
 			CursorLine = { bg = crosshair },
 			CursorColumn = { bg = crosshair },
 			CursorLineNr = { fg = monk, bg = monk_inverse },
-			CursorLineSign = { fg = monk, bg = monk_inverse },
+			CursorLineSign = { bg = crosshair },
 			-- Folded = { bg = "orange" },
 			Folded = { bg = "#A04020" },
 			NormalFloat = { bg = "black" },
