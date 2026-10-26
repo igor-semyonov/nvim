@@ -258,8 +258,7 @@ function custom_tabs:init(options)
 	self.highlights.active = self:create_hl({ fg = colors.black, bg = colors.tab_sel }, "active")
 	self.highlights.inactive = self:create_hl({ fg = colors.tab_unsel_fg, bg = colors.black }, "inactive")
 	-- modified: follow the green modified colors
-	self.highlights.active_modified =
-		self:create_hl({ fg = colors.black, bg = colors.modified_sel }, "active_modified")
+	self.highlights.active_modified = self:create_hl({ fg = colors.black, bg = colors.modified_sel }, "active_modified")
 	self.highlights.inactive_modified =
 		self:create_hl({ fg = colors.black, bg = colors.modified_unsel }, "inactive_modified")
 end
@@ -355,16 +354,32 @@ lualine.setup({
 		-- the component separators between tab NUMBERS, which we keep by design.
 		-- (The statusline keeps its powerline arrows.)
 		lualine_a = {
-			{ custom_tabs, section_separators = { left = "", right = "" }, component_separators = { left = "", right = "" } },
+			{
+				custom_tabs,
+				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
+			},
 		},
 		lualine_b = {
-			{ custom_buffers, section_separators = { left = "", right = "" }, component_separators = { left = "", right = "" } },
+			{
+				custom_buffers,
+				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
+			},
 		},
 		lualine_y = {
-			{ "diff", section_separators = { left = "", right = "" }, component_separators = { left = "", right = "" } },
+			{
+				"diff",
+				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
+			},
 		},
 		lualine_z = {
-			{ "branch", section_separators = { left = "", right = "" }, component_separators = { left = "", right = "" } },
+			{
+				"branch",
+				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
+			},
 		},
 	},
 	winbar = {
