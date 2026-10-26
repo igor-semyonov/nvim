@@ -16,6 +16,7 @@ require("user.delimiters")
 require("user.rainbow-delim")
 require("user.file-manager")
 require("user.vimtex")
+require("user.typst")
 require("user.ufo")
 
 vim.g.NERDCreateDefaultMappings = 1
@@ -40,6 +41,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		"toml",
 		"matlab",
 		"nix",
+		"typst",
 	},
 	callback = function()
 		-- syntax highlighting, provided by Neovim

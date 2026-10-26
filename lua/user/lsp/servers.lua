@@ -28,6 +28,7 @@ local servers = require("user.nix").collect({
 			-- "ltex",
 		},
 		matlab = { "matlab_ls" },
+		typst = { "tinymist" },
 		css = {
 			"cssls",
 			"tailwindcss", -- shared (see html)

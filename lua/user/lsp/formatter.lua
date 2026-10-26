@@ -20,6 +20,7 @@ for _, entry in ipairs({
 	{ "rust", { "rustfmt" }, { "languages", "rust" } },
 	{ "toml", { "taplo" }, nil }, -- core
 	{ "tex", { "latexindent" }, { "languages", "latex" } },
+	{ "typst", { "typstyle" }, { "languages", "typst" } },
 	{ "nix", { "alejandra" }, { "languages", "nix" } },
 	{ "css", { "prettier" }, { "languages", "css" } },
 	--             function()
