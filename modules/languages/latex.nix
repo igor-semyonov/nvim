@@ -13,7 +13,6 @@
     runtimePackages =
       (with pkgs; [
         texlab
-        ltex-ls
         ltex-ls-plus
         texliveFull
         vale
