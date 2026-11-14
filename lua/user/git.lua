@@ -1,3 +1,5 @@
+local git_prefix = "<leader>h"
+
 require("gitsigns").setup({
 	signs = {
 		add = { text = "│" },
@@ -54,7 +56,7 @@ require("gitsigns").setup({
 				gs.nav_hunk("next")
 			end)
 			return "<Ignore>"
-		end, { expr = true })
+		end, { expr = true, desc = "Next hunk" })
 
 		map("n", "[c", function()
 			if vim.wo.diff then
@@ -64,34 +66,34 @@ require("gitsigns").setup({
 				gs.nav_hunk("prev")
 			end)
 			return "<Ignore>"
-		end, { expr = true })
+		end, { expr = true, desc = "Previous hunk" })
 
 		-- Actions
-		map("n", "<leader>hs", gs.stage_hunk)
-		map("n", "<leader>hr", gs.reset_hunk)
-		map("v", "<leader>hs", function()
+		map("n", git_prefix .. "s", gs.stage_hunk, { desc = "Stage hunk" })
+		map("n", git_prefix .. "r", gs.reset_hunk, { desc = "Reset hunk" })
+		map("v", git_prefix .. "s", function()
 			gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end)
-		map("v", "<leader>hr", function()
+		end, { desc = "Stage selected lines" })
+		map("v", git_prefix .. "r", function()
 			gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end)
-		map("n", "<leader>hS", gs.stage_buffer)
-		map("n", "<leader>hu", gs.undo_stage_hunk)
-		map("n", "<leader>hR", gs.reset_buffer)
-		map("n", "<leader>hp", gs.preview_hunk)
-		map("n", "<leader>hb", function()
+		end, { desc = "Reset selected lines" })
+		map("n", git_prefix .. "S", gs.stage_buffer, { desc = "Stage buffer" })
+		map("n", git_prefix .. "u", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
+		map("n", git_prefix .. "R", gs.reset_buffer, { desc = "Reset buffer" })
+		map("n", git_prefix .. "p", gs.preview_hunk, { desc = "Preview hunk" })
+		map("n", git_prefix .. "b", function()
 			gs.blame_line({ full = true })
-		end)
-		map("n", "<leader>htb", gs.toggle_current_line_blame)
-		map("n", "<leader>hd", gs.diffthis)
-		map("n", "<leader>hD", function()
+		end, { desc = "Blame line (full)" })
+		map("n", git_prefix .. "tb", gs.toggle_current_line_blame, { desc = "Toggle line blame" })
+		map("n", git_prefix .. "d", gs.diffthis, { desc = "Diff against index" })
+		map("n", git_prefix .. "D", function()
 			gs.diffthis("~")
-		end)
-		map("n", "<leader>htd", gs.toggle_deleted)
+		end, { desc = "Diff against HEAD~" })
+		map("n", git_prefix .. "td", gs.toggle_deleted, { desc = "Toggle deleted lines" })
 
 		-- Text object
-		map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
-		map("n", "<leader>htw", gs.toggle_word_diff)
+		map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
+		map("n", git_prefix .. "tw", gs.toggle_word_diff, { desc = "Toggle word diff" })
 	end,
 })
 
@@ -463,4 +465,20 @@ neogit.setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>n", "<cmd>Neogit<cr>", { desc = "Open Neogit" })
+local keymap = vim.keymap.set
+keymap("n", git_prefix .. "n", "<cmd>Neogit<cr>", { desc = "Open Neogit" })
+
+local dvp = git_prefix .. "a"
+keymap("n", dvp .. "o", ":DiffviewOpen ", { desc = "DiffviewOpen" })
+keymap("n", dvp .. "c", "<cmd>DiffviewClose<cr>", { desc = "DiffviewClose" })
+keymap("n", dvp .. "h", "<cmd>DiffviewFileHistory<cr>", { desc = "DiffviewFileHistory" })
+keymap("n", dvp .. "f", "<cmd>DiffviewFocusFiles<cr>", { desc = "DiffviewFocusFiles" })
+keymap("n", dvp .. "l", "<cmd>DiffviewLog<cr>", { desc = "DiffviewLog" })
+keymap("n", dvp .. "r", "<cmd>DiffviewRefresh<cr>", { desc = "DiffviewRefresh" })
+keymap("n", dvp .. "t", "<cmd>DiffviewToggleFiles<cr>", { desc = "DiffviewToggleFiles" })
+
+require("which-key").add({
+	{ git_prefix, group = "git" },
+	{ git_prefix .. "t", group = "toggle" },
+	{ dvp, group = "diffview" },
+})
